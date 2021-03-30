@@ -9,7 +9,7 @@ public class TempEnemyCameraFollow : MonoBehaviour
     private void Update()
     {
         Vector3 wantedPos = enemy.position;
-        wantedPos.z = -10.0f;
+        wantedPos.z = -20.0f;
         transform.position = wantedPos;
     }
 }
