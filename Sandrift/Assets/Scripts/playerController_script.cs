@@ -21,7 +21,7 @@ public class playerController_script : MonoBehaviour
 	public float fullnessChange;
 
 
-    public int thrustChangePerInput = 3;
+    public int thrustChangePerInput = 2;
 
     private int forwardForce;
 
