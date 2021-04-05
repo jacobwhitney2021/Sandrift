@@ -5,11 +5,13 @@ using UnityEngine;
 public class TempEnemyCameraFollow : MonoBehaviour
 {
     public Transform enemy;
+    public float cameraDist;
 
     private void Update()
     {
         Vector3 wantedPos = enemy.position;
-        wantedPos.z = -20.0f;
+        wantedPos.z = cameraDist;
         transform.position = wantedPos;
+        Debug.Log(Time.time+"----"+transform.position+"----"+enemy.position);
     }
 }
