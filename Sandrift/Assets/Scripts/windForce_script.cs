@@ -8,14 +8,26 @@ public class windForce_script : MonoBehaviour
     public float sailAngle;
     public float sailFullness;
 
-    private Rigidbody rigidbody;
+    public Rigidbody rigidbody;
 
     public Vector3 sailForce;
+    public Vector3 rocketForce;
+
+    public int rocketThrust; // between 0 and 100
+    public bool nitroOn; // TODO: add cooldown for nitro // TODO cooldown does not finish
+    public const int nitroThrust = 150;
+
+    public const int MAX_FUEL = 1000;
+    private int fuel;
 
     void Start()
     {
         sailAngle = 0.0f;
         rigidbody = gameObject.GetComponent<Rigidbody>();
+
+        rocketThrust = 10;
+        nitroOn = false;
+        fuel = MAX_FUEL;
     }
 
     void FixedUpdate()
@@ -23,7 +35,16 @@ public class windForce_script : MonoBehaviour
         sailAngle = gameObject.GetComponent<playerController_script>().sailAngle;
         sailFullness = gameObject.GetComponent<playerController_script>().sailFullness;
         sailForce = calculateSailForce(windVector, rigidbody.velocity, sailAngle, sailFullness); // do i have to do time delta time for this????? or leave it 
-        rigidbody.AddForce(sailForce);
+
+        fixedUpdateRocket();
+
+        // rocket stuff here
+    }
+
+    void addTotalForce()
+    { 
+        // TODO calculate total forces
+        rigidbody.AddForce(sailForce + rocketForce); 
     }
 
     Vector3 calculateSailForce(Vector3 windVector, Vector3 playerVelocity, float sailAngle, float sailFullness)
@@ -43,4 +64,25 @@ public class windForce_script : MonoBehaviour
     }
 
     // Also create function to apply some kind of roll rotation if component of the wind vector is pushing into the sail/craft side on
+
+    void fixedUpdateRocket()
+    {
+        consumeFuel();
+        calculateRocketForce();
+
+    }
+
+    void calculateRocketForce()
+    {
+        int force = nitroOn ? nitroThrust : rocketThrust;
+        rocketForce = transform.forward * force;
+        return;
+    }
+
+    void consumeFuel()
+    {
+        int fuelConsumed = nitroOn ? (int)(nitroThrust * 1.5f) : rocketThrust; // TODO do we want the fuel function to be linear or not
+        fuel -= fuelConsumed;
+
+    }
 }

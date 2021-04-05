@@ -20,13 +20,8 @@ public class playerController_script : MonoBehaviour
 
 	public float fullnessChange;
 
-    private int rocketThrust; // between 0 and 100
-    public int thrustChangePerInput = 3;
-    private bool nitroOn; // TODO: add cooldown for nitro // TODO cooldown does not finish
-    public const int nitroThrust = 150;
 
-    public const int MAX_FUEL = 1000;
-    private int fuel;
+    public int thrustChangePerInput = 3;
 
     private int forwardForce;
 
@@ -38,18 +33,9 @@ public class playerController_script : MonoBehaviour
 
     void Start()
     {
-        rocketThrust = 10;
-        nitroOn = false;
-        fuel = MAX_FUEL;
-        forwardForce = rocketThrust;
+        
     }
 
-    // for physics changes
-    void FixedUpdate()
-    {
-        fixedUpdateRocket();
-
-    }
 
     void Update()
     {
@@ -57,30 +43,32 @@ public class playerController_script : MonoBehaviour
         updateRocket();
     }
 
-    void fixedUpdateRocket()
-    {
-        consumeFuel();
 
-    }
 
     void updateRocket()
     {
         if (Input.GetKey(NITRO_KEY))
         {
-            nitroOn = true;
+            gameObject.GetComponent<windForce_script>().nitroOn = true;
         }
 
         if (Input.GetKey(INCREASE_THRUST))
         {
-            rocketThrust += thrustChangePerInput;
-            if (rocketThrust > 100) rocketThrust = 100;
+            int rt = gameObject.GetComponent<windForce_script>().rocketThrust;
+            rt += thrustChangePerInput;
+            if (rt > 100) rt = 100;
+
+            gameObject.GetComponent<windForce_script>().rocketThrust = rt;
         }
 
         if (Input.GetKey(DECREASE_THRUST))
         {
-            rocketThrust -= thrustChangePerInput;
-            if (rocketThrust < 0) rocketThrust = 0;
+            int rt = gameObject.GetComponent<windForce_script>().rocketThrust;
+            rt -= thrustChangePerInput;
+            if (rt < 0) rt = 0;
+            gameObject.GetComponent<windForce_script>().rocketThrust = rt;
         }
+
 
     }
 
@@ -113,18 +101,7 @@ public class playerController_script : MonoBehaviour
         }
     }
 
-    void calculateForce()
-    {
-        int force = nitroOn ? nitroThrust : rocketThrust;
-        return; // TODO
-    }
 
-    void consumeFuel()
-    {
-        int fuelConsumed = nitroOn ? (int) (nitroThrust * 1.5f) : rocketThrust; // TODO do we want the fuel function to be linear or not
-        fuel -= fuelConsumed; 
-
-    }
 
 
 
