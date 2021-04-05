@@ -18,7 +18,7 @@ public class windForce_script : MonoBehaviour
         rigidbody = gameObject.GetComponent<Rigidbody>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         sailAngle = gameObject.GetComponent<playerController_script>().sailAngle;
         sailFullness = gameObject.GetComponent<playerController_script>().sailFullness;
