@@ -265,6 +265,8 @@ MonoBehaviour:
   sailFullness: 0
   sailPivotSpeed: 10
   sailFullnessSpeed: 0.2
+  fullnessChange: 0
+  thrustChangePerInput: 3
 --- !u!1 &109666423
 GameObject:
   m_ObjectHideFlags: 0
@@ -369,6 +371,7 @@ GameObject:
   - component: {fileID: 1834303639}
   - component: {fileID: 1834303638}
   - component: {fileID: 1834303637}
+  - component: {fileID: 1834303640}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -441,3 +444,15 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 51.355003, y: 0, z: 0}
+--- !u!114 &1834303640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1834303636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74ed0515bbee7e94c89f9316c8681923, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
