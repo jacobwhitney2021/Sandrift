@@ -21,20 +21,20 @@ public class playerController_script : MonoBehaviour
 	public float fullnessChange;
 
     private int rocketThrust; // between 0 and 100
-    public int thrustIncreasePerInput = 3;
-    private boolean nitroOn; // TODO: add cooldown for nitro // TODO cooldown does not finish
-    const public int nitroThrust = 150;
+    public int thrustChangePerInput = 3;
+    private bool nitroOn; // TODO: add cooldown for nitro // TODO cooldown does not finish
+    public const int nitroThrust = 150;
 
     public const int MAX_FUEL = 1000;
     private int fuel;
 
     private int forwardForce;
 
-    const public string INCREASE_THRUST = "w";
-    const public string DECREASE_THRUST = "s";
-    const public string ROTATE_LEFT = "d";
-    const public string ROTATE_RIGHT = "a";
-    const public string NITRO_KEY = "n"; // TODO add nitro key
+    public const string INCREASE_THRUST = "w";
+    public const string DECREASE_THRUST = "s";
+    public const string ROTATE_LEFT = "d";
+    public const string ROTATE_RIGHT = "a";
+    public const string NITRO_KEY = "n"; // TODO add nitro key
 
     void Start()
     {
@@ -65,18 +65,18 @@ public class playerController_script : MonoBehaviour
 
     void updateRocket()
     {
-        if (Input.getKey(NITRO_KEY))
+        if (Input.GetKey(NITRO_KEY))
         {
             nitroOn = true;
         }
 
-        if (Input.getKey(INCREASE_THRUST))
+        if (Input.GetKey(INCREASE_THRUST))
         {
             rocketThrust += thrustChangePerInput;
             if (rocketThrust > 100) rocketThrust = 100;
         }
 
-        if (Input.getKey(DECREASE_THRUST))
+        if (Input.GetKey(DECREASE_THRUST))
         {
             rocketThrust -= thrustChangePerInput;
             if (rocketThrust < 0) rocketThrust = 0;
@@ -98,18 +98,18 @@ public class playerController_script : MonoBehaviour
         }
 
 
-        fullness_change = Input.GetAxis("SailVertical") * sailFullnessSpeed * Time.deltaTime;
-        if (sailFullness + fullness_change < 0)
+        fullnessChange = Input.GetAxis("SailVertical") * sailFullnessSpeed * Time.deltaTime;
+        if (sailFullness + fullnessChange < 0)
         {
             sailFullness = 0f;
         }
-        else if (sailFullness + fullness_change > 1)
+        else if (sailFullness + fullnessChange > 1)
         {
             sailFullness = 1f;
         }
         else
         {
-            sailFullness += fullness_change;
+            sailFullness += fullnessChange;
         }
     }
 
@@ -121,7 +121,7 @@ public class playerController_script : MonoBehaviour
 
     void consumeFuel()
     {
-        int fuelConsumed = nitroOn ? (float) nitroThrust * 1.5 : rocketThrust; // TODO do we want the fuel function to be linear or not
+        int fuelConsumed = nitroOn ? (int) (nitroThrust * 1.5f) : rocketThrust; // TODO do we want the fuel function to be linear or not
         fuel -= fuelConsumed; 
 
     }
