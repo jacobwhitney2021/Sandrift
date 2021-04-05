@@ -10,18 +10,34 @@ public class audioManager_script : MonoBehaviour
 	public AudioClip lightWind2_clip;
 	public AudioClip lightWind3_clip;
 	public AudioClip heavyWind1_clip;
-	// AudioSource creaking_source;
+	AudioSource creaking_audio;
+	AudioSource sailLuffing_audio;
+    AudioSource lightWind2_audio;
+    AudioSource heavyWind1_audio;
+
+	private GameObject playerObject;
+	Vector3 windVector;
 
     void Start()
     {
-        AudioSource creaking_source = AddAudio(creaking_clip, true, true, 1.0f);
-        creaking_source.Play ();
+        playerObject = GameObject.FindGameObjectWithTag("Player");
+		windVector = playerObject.GetComponent<windForce_script>().windVector;
+
+        creaking_audio = AddAudio(creaking_clip, true, true, 1.0f);
+        sailLuffing_audio = AddAudio(sailLuffing_clip, true, true, 1.0f);
+        lightWind2_audio = AddAudio(lightWind2_clip, true, true, 7.5f);
+        heavyWind1_audio = AddAudio(heavyWind1_clip, false, false, 1.0f);
+        
+        creaking_audio.Play();
+        sailLuffing_audio.Play();
+        lightWind2_audio.Play();
+        //heavyWind1_audio.Play();
     }
 
 
     void Update()
     {
-        
+    	playWindBasedAudio();
     }
 
 
@@ -35,5 +51,34 @@ public class audioManager_script : MonoBehaviour
 		return newAudio; 
 	}
 
+	void playWindBasedAudio() 
+	{
+		// AudioSource currentWindAudio = null;
+
+		// if (windVector.magnitude>0.0f) 
+		// {
+		// 	if (windVector.magnitude<=0.0f)
+		// 	{
+		// 		currentWindAudio = lightWind2_audio;
+		// 	}
+			
+
+		// 	if (!sailLuffing_audio.isPlaying)
+		// 	{
+		// 		sailLuffing_audio.Play();
+		// 	}
+		// }
+		
+		// if (windVector.magnitude>10.0f) 
+		// {
+		// 	currentWindAudio = lightWind2_audio;
+		// }
+		
+		// if (!currentWindAudio.isPlaying)
+		// {
+		// 	currentWindAudio.Play();
+		// }
+		
+	}
 
 }
