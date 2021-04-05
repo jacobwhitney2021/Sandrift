@@ -12,7 +12,10 @@ public class playerController_script : MonoBehaviour
 
 	// whoever works on this next, feel free to change any of this to make it feel better
 
-	public float sailAngle = 0.0f;
+	public float turnSpeed = 5.0f;
+    public float rawTorque;
+
+    public float sailAngle = 0.0f;
 	public float sailFullness = 0.0f; 
 
 	public float sailPivotSpeed = 10.0f; // speed of rotation of the sail
@@ -39,11 +42,15 @@ public class playerController_script : MonoBehaviour
 
     void Update()
     {
+        updateRudder();
         updateSail();
         updateRocket();
     }
 
-
+    void updateRudder()
+    {
+        rawTorque = Input.GetAxis("Horizontal") * turnSpeed * Time.deltaTime;
+    }
 
     void updateRocket()
     {
@@ -100,6 +107,8 @@ public class playerController_script : MonoBehaviour
             sailFullness += fullnessChange;
         }
     }
+
+
 
 
 
