@@ -53,6 +53,13 @@ public class windForce_script : MonoBehaviour
         fixedUpdateRocket();
 
         // rocket stuff here
+
+        rigidbody.AddForce(sailForce);
+    }
+
+    void Update()
+    {
+        //createWind();
     }
 
     void createWind()
@@ -115,7 +122,6 @@ public class windForce_script : MonoBehaviour
     {
         consumeFuel();
         calculateRocketForce();
-
     }
 
     void calculateRocketForce()

@@ -42,15 +42,15 @@ public class playerController_script : MonoBehaviour
 
     void Update()
     {
-        updateRudder();
+        //updateRudder();
         updateSail();
         updateRocket();
     }
 
-    void updateRudder()
-    {
-        rawTorque = Input.GetAxis("Horizontal") * turnSpeed * Time.deltaTime;
-    }
+    // void updateRudder()
+    // {
+    //     rawTorque = Input.GetAxis("Horizontal") * turnSpeed * Time.deltaTime;
+    // }
 
     void updateRocket()
     {
