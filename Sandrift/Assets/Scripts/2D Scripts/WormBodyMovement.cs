@@ -16,10 +16,6 @@ public class WormBodyMovement : MonoBehaviour
     public float wiggleSpeed;
     public float wiggleMagnitude;
     public Transform wiggleDir;
-
-    //public Transform bodyPartTest;
-
-    public int bplength;
     public Transform[] bodyParts;
 
     private void Start()
@@ -27,7 +23,6 @@ public class WormBodyMovement : MonoBehaviour
         lineRend.positionCount = length;
         segmentPoses = new Vector3[length];
         segmentV = new Vector3[length];
-        //bodyParts = new Transform[bplength];
     }
 
     private void Update()
@@ -52,8 +47,6 @@ public class WormBodyMovement : MonoBehaviour
         }
 
         lineRend.SetPositions(segmentPoses);
-
-        //bodyPartTest.position = segmentPoses[0];
 
         for (int i = 0; i < bodyParts.Length; i++)
         {
