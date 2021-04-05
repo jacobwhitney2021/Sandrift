@@ -7,7 +7,7 @@ public class WormHeadMovement : MonoBehaviour
     internal float moveSpeed = 2.5f;
     internal float rotSpeed = 70.0f;
 
-    internal Vector2 decisionTime = new Vector2(4f, 8f);
+    internal Vector2 decisionTime = new Vector2(1f, 4f);
     internal float decisionTimeCount = 0;
 
     internal Vector3[] allMoveDirections = new Vector3[] {
