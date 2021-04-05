@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class windForce_script : MonoBehaviour
 {
     public Vector3 windVector;
@@ -13,12 +14,19 @@ public class windForce_script : MonoBehaviour
     public Vector3 sailForce;
     public Vector3 rocketForce;
 
-    public int rocketThrust; // between 0 and 100
+    public int rocketThrust; // between 0 and 50
     public bool nitroOn; // TODO: add cooldown for nitro // TODO cooldown does not finish
     public const int nitroThrust = 150;
 
+    public const int MAXIMUM_WIND = 30;
+    public const int MAXIMUM_WIND_CHANGE = 2;
+
+    public Vector3 windGoal;
+
     public const int MAX_FUEL = 1000;
     private int fuel;
+
+    private System.Random rnd;
 
     void Start()
     {
@@ -28,6 +36,12 @@ public class windForce_script : MonoBehaviour
         rocketThrust = 10;
         nitroOn = false;
         fuel = MAX_FUEL;
+
+        windVector = new Vector3(0, 0, 0);
+        windGoal = new Vector3(0, 0, 0);
+
+        rnd = new System.Random();
+
     }
 
     void FixedUpdate()
@@ -39,6 +53,38 @@ public class windForce_script : MonoBehaviour
         fixedUpdateRocket();
 
         // rocket stuff here
+    }
+
+    void createWind()
+    {
+        if (windGoal == windVector)
+        {
+            windGoal.x = rnd.Next(-1 * MAXIMUM_WIND, MAXIMUM_WIND);
+            windGoal.z = rnd.Next(-1 * MAXIMUM_WIND, MAXIMUM_WIND);
+        } else {
+            windVector.x = applyWindOnAxis(windGoal.x, windVector.x);
+            windVector.z = applyWindOnAxis(windGoal.z, windVector.z);
+
+        }
+    }
+
+    float applyWindOnAxis(float goal, float curr)
+    {
+        float diff = goal - curr;
+        float change = rnd.Next(MAXIMUM_WIND_CHANGE);
+
+        if (change > System.Math.Abs(diff))
+        {
+            return goal;
+        }
+        else if (diff > 0)
+        {
+            return curr + change;
+        }
+        else
+        {
+            return curr - change;
+        }
     }
 
     void addTotalForce()
@@ -76,7 +122,6 @@ public class windForce_script : MonoBehaviour
     {
         int force = nitroOn ? nitroThrust : rocketThrust;
         rocketForce = transform.forward * force;
-        return;
     }
 
     void consumeFuel()
