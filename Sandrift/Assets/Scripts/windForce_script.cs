@@ -103,12 +103,13 @@ public class windForce_script : MonoBehaviour
     Vector3 calculateSailForce(Vector3 windVector, Vector3 playerVelocity, float sailAngle, float sailFullness)
     {
     	Vector3 apparentWindVector = windVector - playerVelocity;
+		float craftAngle = Vector3.Angle(transform.forward, apparentWindVector);
 		float windAngle = Vector3.Angle(new Vector3(0,0,1), apparentWindVector); // angle from global forward. need to make sure sailAngle is defined in a similar way (i.e polar coordinates)
 		float sailWindAngle = Mathf.Abs(sailAngle - windAngle);
 		// sailforcevecotr hsould not be based of wind vector but should be sailvector modified by angle between windvector and sail angle, further modified by difference between windspeed and craft speed (zero force if speeds are the same)
     	Vector3 sailForceVector;
     	if ((sailWindAngle <= 90f) || (sailWindAngle >= 270f)) { // this is not working, seems to always be true   || (sailWindAngle >= (3/2)*Mathf.PI)
-    		sailForceVector = transform.forward * apparentWindVector.magnitude * Mathf.Cos(sailWindAngle*(Mathf.PI/180f)) * sailFullness; // maybe make square of wind speed
+    		sailForceVector = transform.forward * apparentWindVector.magnitude * Mathf.Cos(sailWindAngle*(Mathf.PI/180f)) * Mathf.Cos(craftAngle*(Mathf.PI/180f)) * sailFullness; // maybe make square of wind speed
     	}
     	else {
     		sailForceVector = Vector3.zero;
