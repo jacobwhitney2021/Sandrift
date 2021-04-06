@@ -37,7 +37,7 @@ public class windForce_script : MonoBehaviour
         nitroOn = false;
         fuel = MAX_FUEL;
 
-        windVector = new Vector3(0, 0, 0);
+        //windVector = new Vector3(0, 0, 0);
         windGoal = new Vector3(0, 0, 0);
 
         rnd = new System.Random();

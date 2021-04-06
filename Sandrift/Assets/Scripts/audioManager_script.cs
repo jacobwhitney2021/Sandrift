@@ -23,10 +23,10 @@ public class audioManager_script : MonoBehaviour
         playerObject = GameObject.FindGameObjectWithTag("Player");
 		windVector = playerObject.GetComponent<windForce_script>().windVector;
 
-        creaking_audio = AddAudio(creaking_clip, true, true, 1.0f);
-        sailLuffing_audio = AddAudio(sailLuffing_clip, true, true, 1.0f);
+        creaking_audio = AddAudio(creaking_clip, true, true, 8.0f);
+        sailLuffing_audio = AddAudio(sailLuffing_clip, true, true, 8.0f);
         lightWind2_audio = AddAudio(lightWind2_clip, true, true, 7.5f);
-        heavyWind1_audio = AddAudio(heavyWind1_clip, false, false, 1.0f);
+        heavyWind1_audio = AddAudio(heavyWind1_clip, false, false, 8.0f);
         
         creaking_audio.Play();
         sailLuffing_audio.Play();
