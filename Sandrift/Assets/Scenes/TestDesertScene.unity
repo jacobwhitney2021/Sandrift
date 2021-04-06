@@ -431,7 +431,7 @@ TerrainCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1206210710}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 5d14d24126542402d93bbff69953cda9, type: 2}
   m_Enabled: 1
   m_TerrainData: {fileID: 15600000, guid: 17f29e183f53b4092b4e9c4e4d10d1ab, type: 2}
   m_EnableTreeColliders: 1
@@ -459,7 +459,7 @@ Terrain:
   m_DrawInstanced: 0
   m_DrawTreesAndFoliage: 1
   m_ReflectionProbeUsage: 1
-  m_MaterialTemplate: {fileID: 10652, guid: 0000000000000000f000000000000000, type: 0}
+  m_MaterialTemplate: {fileID: 2100000, guid: edf3dd91be89aac4985534c8464e0574, type: 2}
   m_BakeLightProbesForTrees: 1
   m_PreserveTreePrototypeLayers: 0
   m_DeringLightProbesForTrees: 1
@@ -494,10 +494,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f56a5d45d0054798820e696ceefb189, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 250
-  height: 250
-  depth: 20
-  scale: 5
+  width: 1000
+  height: 1000
+  depth: 11
+  scale: 50
 --- !u!1 &1530823295
 GameObject:
   m_ObjectHideFlags: 0
@@ -596,7 +596,7 @@ Rigidbody:
   m_GameObject: {fileID: 1530823295}
   serializedVersion: 2
   m_Mass: 2
-  m_Drag: 2
+  m_Drag: 4.04
   m_AngularDrag: 7
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -629,7 +629,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1530823295}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 29.1, y: 8.48, z: 28.3}
+  m_LocalPosition: {x: 29.1, y: 10, z: 28.3}
   m_LocalScale: {x: 0.81442, y: 0.22894448, z: 3.2712}
   m_Children:
   - {fileID: 1193918895}
