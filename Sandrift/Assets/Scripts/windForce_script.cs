@@ -37,7 +37,7 @@ public class windForce_script : MonoBehaviour
         nitroOn = false;
         fuel = MAX_FUEL;
 
-        //windVector = new Vector3(0, 0, 0);
+        windVector = new Vector3(0, 0, 0);
         windGoal = new Vector3(0, 0, 0);
 
         rnd = new System.Random();
@@ -54,12 +54,12 @@ public class windForce_script : MonoBehaviour
 
         // rocket stuff here
 
-        rigidbody.AddForce(sailForce);
+        addTotalForce();
     }
 
     void Update()
     {
-        //createWind();
+        createWind();
     }
 
     void createWind()
@@ -95,9 +95,14 @@ public class windForce_script : MonoBehaviour
     }
 
     void addTotalForce()
-    { 
+    {
         // TODO calculate total forces
-        rigidbody.AddForce(sailForce + rocketForce); 
+        Debug.Log("Rocket force");
+        Debug.Log(rocketForce);
+
+        Debug.Log("Sailwwwwwwwwwwwwwwwwwwwwwwwwwww force");
+        Debug.Log(sailForce);
+        rigidbody.AddForce(rocketForce + sailForce); 
     }
 
     Vector3 calculateSailForce(Vector3 windVector, Vector3 playerVelocity, float sailAngle, float sailFullness)

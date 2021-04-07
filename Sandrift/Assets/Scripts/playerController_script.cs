@@ -25,6 +25,7 @@ public class playerController_script : MonoBehaviour
 
 
     public int thrustChangePerInput = 2;
+    public const int MAX_THRUST = 30;
 
     private int forwardForce;
 
@@ -63,7 +64,7 @@ public class playerController_script : MonoBehaviour
         {
             int rt = gameObject.GetComponent<windForce_script>().rocketThrust;
             rt += thrustChangePerInput;
-            if (rt > 100) rt = 100;
+            if (rt > MAX_THRUST) rt = MAX_THRUST;
 
             gameObject.GetComponent<windForce_script>().rocketThrust = rt;
         }
