@@ -16,6 +16,12 @@
      Quaternion newRot;
  
  
+
+ // change to reference the global angle rather than the boats angle to make the camerea more steady 
+     // it can still track position, but the angles need to be disconnectedc 
+
+     // i love video james
+
      void Start() {
          //y_offset = 10f;
          //z_offset = 10f;

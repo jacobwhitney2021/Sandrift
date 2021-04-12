@@ -12,40 +12,27 @@ public class playerController_script : MonoBehaviour
 
 	// whoever works on this next, feel free to change any of this to make it feel better
 
-	public float turnSpeed = 5.0f;
-    public float rawTorque;
+    public const string NITRO_KEY = "space";
 
-    public float sailAngle = 0.0f;
-	public float sailFullness = 0.0f; 
+    public float sailInputVertical;
+    public float sailInputHorizontal;
+    public float rudderInputAxis;
+    public float rocketInputAxis;
+    public bool nitroInput;
 
-	public float sailPivotSpeed = 10.0f; // speed of rotation of the sail
-	public float sailFullnessSpeed = 1.5f; // speed that the sail changed fullness
-
-	public float fullnessChange;
-
-
-    public int thrustChangePerInput = 2;
-    public const int MAX_THRUST = 30;
-
-    private int forwardForce;
-
-    public const string INCREASE_THRUST = "w";
-    public const string DECREASE_THRUST = "s";
-    public const string ROTATE_LEFT = "d";
-    public const string ROTATE_RIGHT = "a";
-    public const string NITRO_KEY = "n"; // TODO add nitro key
 
     void Start()
     {
-        
     }
 
 
     void Update()
     {
-        //updateRudder();
-        updateSail();
-        updateRocket();
+        sailInputVertical = Input.GetAxis("SailVertical");
+        sailInputHorizontal = Input.GetAxis("SailHorizontal");
+        rudderInputAxis = Input.GetAxis("Horizontal");
+        rocketInputAxis = Input.GetAxis("RocketVertical");
+        nitroInput = Input.GetKey(NITRO_KEY);
     }
 
     // void updateRudder()
@@ -53,61 +40,33 @@ public class playerController_script : MonoBehaviour
     //     rawTorque = Input.GetAxis("Horizontal") * turnSpeed * Time.deltaTime;
     // }
 
-    void updateRocket()
-    {
-        if (Input.GetKey(NITRO_KEY))
-        {
-            gameObject.GetComponent<windForce_script>().nitroOn = true;
-        }
+    // void updateRocket()
+    // {
+    //     if (Input.GetKey(NITRO_KEY))
+    //     {
+    //         gameObject.GetComponent<windForce_script>().nitroOn = true;
+    //     }
 
-        if (Input.GetKey(INCREASE_THRUST))
-        {
-            int rt = gameObject.GetComponent<windForce_script>().rocketThrust;
-            rt += thrustChangePerInput;
-            if (rt > MAX_THRUST) rt = MAX_THRUST;
+    //     if (Input.GetKey(INCREASE_THRUST))
+    //     {
+    //         int rt = gameObject.GetComponent<windForce_script>().rocketThrust;
+    //         rt += thrustChangePerInput;
+    //         if (rt > MAX_THRUST) rt = MAX_THRUST;
 
-            gameObject.GetComponent<windForce_script>().rocketThrust = rt;
-        }
+    //         gameObject.GetComponent<windForce_script>().rocketThrust = rt;
+    //     }
 
-        if (Input.GetKey(DECREASE_THRUST))
-        {
-            int rt = gameObject.GetComponent<windForce_script>().rocketThrust;
-            rt -= thrustChangePerInput;
-            if (rt < 0) rt = 0;
-            gameObject.GetComponent<windForce_script>().rocketThrust = rt;
-        }
-
-
-    }
-
-    void updateSail()
-    {
-        float rotation_change = Input.GetAxis("SailHorizontal") * sailPivotSpeed * Time.deltaTime;
-        sailAngle += rotation_change;
-        if (sailAngle < 0f)
-        {
-            sailAngle += 360f;
-        }
-        if (sailAngle > 360f)
-        {
-            sailAngle -= 360f;
-        }
+    //     if (Input.GetKey(DECREASE_THRUST))
+    //     {
+    //         int rt = gameObject.GetComponent<windForce_script>().rocketThrust;
+    //         rt -= thrustChangePerInput;
+    //         if (rt < 0) rt = 0;
+    //         gameObject.GetComponent<windForce_script>().rocketThrust = rt;
+    //     }
 
 
-        fullnessChange = Input.GetAxis("SailVertical") * sailFullnessSpeed * Time.deltaTime;
-        if (sailFullness + fullnessChange < 0)
-        {
-            sailFullness = 0f;
-        }
-        else if (sailFullness + fullnessChange > 1)
-        {
-            sailFullness = 1f;
-        }
-        else
-        {
-            sailFullness += fullnessChange;
-        }
-    }
+    // }
+
 
 
 
