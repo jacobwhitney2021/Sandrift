@@ -1,22 +1,22 @@
-﻿// using System.Collections;
-// using System.Collections.Generic;
-// using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-// public class CameraFollowEnemy : MonoBehaviour
-// {
-//     public Transform targetObject;
-//     private Vector3 initalOffset;
-//     private Vector3 cameraPosition;
+public class CameraFollowEnemy : MonoBehaviour
+{
+    public Transform targetObject;
+    private Vector3 initalOffset;
+    private Vector3 cameraPosition;
 
-//     void Start()
-//     {
-//         initalOffset = transform.position - targetObject.position;
-//     }
+    void Start()
+    {
+        initalOffset = transform.position - targetObject.position;
+    }
 
-//     void FixedUpdate()
-//     {
-//         cameraPosition = targetObject.position + initalOffset;
-//         transform.position = cameraPosition;
-//         //Debug.Log(targetObject.position);
-//     }
-// }
+    void FixedUpdate()
+    {
+        cameraPosition = targetObject.position + initalOffset;
+        transform.position = cameraPosition;
+        //Debug.Log(targetObject.position);
+    }
+}
