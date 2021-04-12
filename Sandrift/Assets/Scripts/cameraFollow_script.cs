@@ -20,6 +20,8 @@
  // change to reference the global angle rather than the boats angle to make the camerea more steady 
      // it can still track position, but the angles need to be disconnectedc 
 
+     // maybe make it based off of gloab coordinates???
+
      // i love video james
 
      void Start() {
