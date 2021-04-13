@@ -7,6 +7,7 @@ public class windForce_script : MonoBehaviour
 {
     private Transform craft_transform;
     private GameObject craft_gameobject;
+    public GameObject particleController;
 
     private float sailInputVertical;
     private float sailInputHorizontal;

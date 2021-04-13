@@ -19,7 +19,7 @@ public class applyTotalForce_script : MonoBehaviour
     {
         rigidbody = gameObject.GetComponent<Rigidbody>();
         sail = GameObject.FindGameObjectWithTag("Sail");
-    }
+       }
 
     // Update is called once per frame
     void FixedUpdate()
@@ -31,7 +31,8 @@ public class applyTotalForce_script : MonoBehaviour
         sailTorque = sail.GetComponent<windForce_script>().sailTorque;
         rudderTorque = gameObject.GetComponent<rudder_script>().rudderTorque;
         totalTorque = rudderTorque + sailTorque;
-
+       
+        
         rigidbody.AddForce(totalForce);
         rigidbody.AddTorque(totalTorque);
     }

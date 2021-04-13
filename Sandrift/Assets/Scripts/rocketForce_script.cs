@@ -6,12 +6,14 @@ public class rocketForce_script : MonoBehaviour
 {
     public Rigidbody rigidbody;
 
+    public GameObject particleController;
+
     private float rocketInputAxis;
     public bool nitroOn; // TODO: add cooldown for nitro // TODO cooldown does not finish
 
     public float thrustChangePerInput;
     public float decelerationRate;
-	public float maxTrust;
+	public float maxThrust;
 	public float nitroThrust;
 	
 	public float rocketThrust;
@@ -25,6 +27,7 @@ public class rocketForce_script : MonoBehaviour
     void Start()
     {
         rigidbody = gameObject.GetComponent<Rigidbody>();
+        particleController.GetComponent<ParticleController_Script>().SetMaxForce(maxThrust);
     }
 
     // Update is called once per frame
@@ -37,6 +40,8 @@ public class rocketForce_script : MonoBehaviour
 
     void FixedUpdate()
     {
+
+        particleController.GetComponent<ParticleController_Script>().SetRocketForce(rocketThrust);
         rocketForce = calculateRocketForce(rocketThrust); 
     }
 
@@ -47,9 +52,9 @@ public class rocketForce_script : MonoBehaviour
         if (rocketInputAxis>0)
         {
         	float thrustChange = rocketInputAxis * thrustPerSec;
-	        if (!nitroOn && (rocketThrust+thrustChange >= maxTrust)) 
+	        if (!nitroOn && (rocketThrust+thrustChange >= maxThrust)) 
 	        {
-	        	rocketThrust = maxTrust;
+	        	rocketThrust = maxThrust;
 	        }
 	        else 
 	        {

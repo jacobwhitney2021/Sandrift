@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Dune
   - Sail
+  - Particle
   layers:
   - Default
   - TransparentFX
