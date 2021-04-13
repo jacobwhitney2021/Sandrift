@@ -119,7 +119,7 @@ public class windForce_script : MonoBehaviour
 
         Vector3 sailTorque;
         if (craft_transform.rotation.z >= -40 || craft_transform.rotation.z <= 40) {
-        sailTorque = -craft_transform.forward * apparentWindVector.magnitude * Mathf.Cos(sailWindAngle*(Mathf.PI/180f)) * Mathf.Sin(sailCraftAngle*(Mathf.PI/180f)) * sailFullness * 0.1f; // maybe make square of wind speed
+        sailTorque = -craft_transform.forward * apparentWindVector.magnitude * Mathf.Cos(sailWindAngle*(Mathf.PI/180f)) * Mathf.Sin(sailCraftAngle*(Mathf.PI/180f)) * sailFullness * 0.05f; // maybe make square of wind speed
         }
         else
             sailTorque = Vector3.zero;
