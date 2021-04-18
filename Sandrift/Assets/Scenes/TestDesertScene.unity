@@ -1395,6 +1395,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &954474855 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 861012044722075230, guid: df11907234d404b5e98ce553e73d4ced,
+    type: 3}
+  m_PrefabInstance: {fileID: 3792530595359502516}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1027513734
 GameObject:
   m_ObjectHideFlags: 0
@@ -6525,6 +6531,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1369185448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1369185439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7647721890bb3424691a9dda3d6077f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy1: {fileID: 954474855}
+  enemy2: {fileID: 0}
+  enemy3: {fileID: 0}
 --- !u!1001 &1408709603
 PrefabInstance:
   m_ObjectHideFlags: 0
