@@ -7,6 +7,9 @@ TagManager:
   - Dune
   - Sail
   - Particle
+  - Wind
+  - DuneContactParticle
+  - RocketParticle
   layers:
   - Default
   - TransparentFX

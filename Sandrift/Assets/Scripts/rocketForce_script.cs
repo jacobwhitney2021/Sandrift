@@ -27,7 +27,6 @@ public class rocketForce_script : MonoBehaviour
     void Start()
     {
         rigidbody = gameObject.GetComponent<Rigidbody>();
-        particleController.GetComponent<ParticleController_Script>().SetMaxForce(maxThrust);
     }
 
     // Update is called once per frame
@@ -40,8 +39,6 @@ public class rocketForce_script : MonoBehaviour
 
     void FixedUpdate()
     {
-
-        particleController.GetComponent<ParticleController_Script>().SetRocketForce(rocketThrust);
         rocketForce = calculateRocketForce(rocketThrust); 
     }
 
