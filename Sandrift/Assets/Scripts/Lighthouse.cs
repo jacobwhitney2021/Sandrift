@@ -5,24 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class Lighthouse : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    void OnTriggerEnter(Collider other)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    void OnCollisionEnter(Collision gameObjectInformation)
-    {
-        if (gameObjectInformation.gameObject.name== "PlayerPrefab")
-        {
-            Debug.Log("Collision Detected");
-            SceneManager.LoadScene("EndMenu");
-        }
-        
+        SceneManager.LoadScene("EndMenu");
     }
 }
