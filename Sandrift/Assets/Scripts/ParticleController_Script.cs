@@ -19,7 +19,6 @@ public class ParticleController_Script : MonoBehaviour
         maxThrust = 0;
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         float force = rocketThrust / maxThrust;
@@ -31,18 +30,4 @@ public class ParticleController_Script : MonoBehaviour
         }
     }
 
-    public void SetSailForce(float sf)
-    {
-        sailForce = sf;
-    }
-    public void SetRocketForce(float rf)
-    {
-    
-        rocketThrust = rf;
-    }
-
-    public void SetMaxForce(float mf)
-    {
-        maxThrust = mf;
-    }
 }

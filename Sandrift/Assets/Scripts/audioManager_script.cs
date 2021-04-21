@@ -21,7 +21,7 @@ public class audioManager_script : MonoBehaviour
     void Start()
     {
         playerObject = GameObject.FindGameObjectWithTag("Player");
-		windVector = playerObject.GetComponent<windForce_script>().windVector;
+//		windVector = playerObject.GetComponent<windForce_script>().windVector;
 
         creaking_audio = AddAudio(creaking_clip, true, true, 8.0f);
         sailLuffing_audio = AddAudio(sailLuffing_clip, true, true, 8.0f);
