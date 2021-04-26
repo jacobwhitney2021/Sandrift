@@ -1,13 +1,14 @@
 ﻿using UnityEngine.Audio;
 using UnityEngine;
 
+
 [System.Serializable]
 public class Sound
 {
-    public AudioMixerGroup group;
 
     public string name;
 
+    public AudioMixerGroup group;
     public AudioClip clip;
 
     [Range(0f, 10f)]
@@ -19,4 +20,5 @@ public class Sound
 
     [HideInInspector]
     public AudioSource source;
+
 }
