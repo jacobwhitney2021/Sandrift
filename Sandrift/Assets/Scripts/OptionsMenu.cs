@@ -13,4 +13,18 @@ public class OptionsMenu : MonoBehaviour
         audioMixer.SetFloat("volume", volume);
 
     }
+
+    public void SetMusVolume(float volume)
+    {
+        Debug.Log(volume);
+        audioMixer.SetFloat("musicVol", volume);
+
+    }
+
+    public void SetSFXVolume(float volume)
+    {
+        Debug.Log(volume);
+        audioMixer.SetFloat("sfxVol", volume);
+
+    }
 }
