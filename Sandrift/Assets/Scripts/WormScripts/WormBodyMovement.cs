@@ -31,26 +31,21 @@ public class WormBodyMovement : MonoBehaviour
         wiggleDir.localRotation = Quaternion.Euler(
                                     0,
                                     0,
-                                    Mathf.Sin(wiggleStep)*wiggleMagnitude);
-
+                                    Mathf.Sin(wiggleStep) * wiggleMagnitude);
         segmentPoses[0] = targetDir.position;
 
-        for (int i = 1; i <length; i++)
+        for (int i = 1; i < length; i++)
         {
             segmentPoses[i] = Vector3.SmoothDamp(
                                 segmentPoses[i],
-                                segmentPoses[i-1]+targetDir.right*targetDist,
+                                segmentPoses[i - 1] + targetDir.right * targetDist,
                                 ref segmentV[i],
                                 smoothSpeed);
         }
-
         lineRend.SetPositions(segmentPoses);
-
         for (int i = 0; i < bodyParts.Length; i++)
         {
             bodyParts[i].transform.position = segmentPoses[i];
         }
-
-        
     }
 }

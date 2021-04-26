@@ -7,7 +7,7 @@ public class WormHeadMove : MonoBehaviour
     internal new Rigidbody rigidbody;
 
     internal float moveSpeed = 5.0f;
-    internal float rotSpeed = 35.0f;
+    internal float rotationSpeed = 35.0f;
 
     internal Vector2 decisionTime = new Vector2(10f, 15f);
     internal float decisionTimeCount = 0;
@@ -45,7 +45,7 @@ public class WormHeadMove : MonoBehaviour
             transform.rotation = Quaternion.RotateTowards(
                                     transform.rotation,
                                     wantedAngle,
-                                    Time.deltaTime * rotSpeed);
+                                    Time.deltaTime * rotationSpeed);
         }
         else
         {
