@@ -57,7 +57,7 @@ InputManager:
     m_Name: RocketVertical
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: 
+    negativeButton: s
     positiveButton: w
     altNegativeButton: 
     altPositiveButton: 
