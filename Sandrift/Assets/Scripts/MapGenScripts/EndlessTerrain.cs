@@ -16,6 +16,7 @@ public class EndlessTerrain : MonoBehaviour {
 
     public Transform viewer;
     public Material mapMaterial;
+    public PhysicMaterial mapPhysicMaterial;
 
     public static Vector2 viewerPosition;
     Vector2 viewerPositionOld;
@@ -71,7 +72,8 @@ public class EndlessTerrain : MonoBehaviour {
                                                     chunkSize,
                                                     detailLevels,
                                                     transform,
-                                                    mapMaterial));
+                                                    mapMaterial,
+                                                    mapPhysicMaterial));
                 }
             }
         }
@@ -95,7 +97,7 @@ public class EndlessTerrain : MonoBehaviour {
         bool mapDataReceived;
         int previousLODIndex = -1;
 
-        public TerrainChunk(Vector2 coord, int size, LODInfo[] detailLevels, Transform parent, Material material)
+        public TerrainChunk(Vector2 coord, int size, LODInfo[] detailLevels, Transform parent, Material mapMaterial, PhysicMaterial mapPhysicMaterial)
         {
             this.detailLevels = detailLevels;
 
@@ -107,7 +109,8 @@ public class EndlessTerrain : MonoBehaviour {
             meshRenderer = meshObject.AddComponent<MeshRenderer>();
             meshFilter = meshObject.AddComponent<MeshFilter>();
             meshCollider = meshObject.AddComponent<MeshCollider>();
-            meshRenderer.material = material;
+            meshRenderer.material = mapMaterial;
+            meshCollider.material = mapPhysicMaterial;
 
             meshObject.transform.position = positionV3;
             //meshObject.transform.position = positionV3 * scale;
