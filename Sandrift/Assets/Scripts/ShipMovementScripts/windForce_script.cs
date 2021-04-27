@@ -22,9 +22,21 @@ public class windForce_script : MonoBehaviour
     private float rotationChange;
 
     public Vector3 windVector;
+    public float magnitude;
+    public const float maxMagnitude = 8;
+    public const float maxWind = 15;
+    private int windState;
+    private const int windStateMax = 60;
+    private const int perSecond = 50;
+
+    private const int windChangeDur = 10;
 
     public Vector3 sailForce;
     public Vector3 sailTorque;
+
+    private Vector3 goalWindVector;
+    private float goalMagnitude;
+    
     
 
     // public const int MAXIMUM_WIND = 30;
@@ -41,6 +53,15 @@ public class windForce_script : MonoBehaviour
     {
         craft_transform = transform.parent.parent;
         craft_gameobject = craft_transform.gameObject;
+
+        windVector.x = nonUniformRange(-1 * maxWind, maxWind);
+        windVector.y = nonUniformRange(-1 * maxWind, maxWind);
+        windVector.z = nonUniformRangePositiveBiased(maxWind);
+        magnitude = nonUniformRange(0, maxMagnitude);
+        
+        windState = 0;
+
+
     }
 
     void Update()
@@ -52,8 +73,81 @@ public class windForce_script : MonoBehaviour
 
     void FixedUpdate()
     {
+        updateWind();
         sailForce = calculateSailForce(windVector, craft_gameobject.GetComponent<Rigidbody>().velocity, transform.forward, sailFullness); 
         sailTorque = calculateSailTorque(windVector, craft_gameobject.GetComponent<Rigidbody>().velocity, transform.forward, sailFullness); 
+    }
+
+
+    void updateWind()
+    {
+        if (windState == 0) {
+            createWindGoal();
+        } else if (windState < 0) {
+            incrementWindtoGoal();
+        } else {
+            windState--;
+        }
+    }
+
+    void createWindGoal()
+    {
+        Vector3 vec;
+        
+        vec.x = nonUniformRange(-1 * maxWind, maxWind);
+        vec.y = nonUniformRange(-1 * maxWind, maxWind);
+        vec.z = nonUniformRangePositiveBiased(maxWind);
+        float mag = nonUniformRange(0, maxMagnitude);
+
+        windState = -1 * windChangeDur * perSecond;
+
+        goalMagnitude = (mag - magnitude) / (float) windState;
+        goalWindVector = (vec - windVector) / (float) windState;
+
+    }
+    void incrementWindtoGoal()
+    {
+        magnitude -= goalMagnitude;
+        windVector -= goalWindVector; 
+
+        if (windState == -1) {
+            windState = windStateMax * perSecond;
+        }
+        windState++;
+
+    }
+
+float nonUniformRange(float from, float to)
+    {
+        float rand = Random.Range(from, to);
+        float quartile = (to - from) / 4;
+        float ten = (to - from) / 10;
+        
+        if (rand < from + ten || rand > to - quartile) 
+        {
+            int r = Random.Range(0, 1);
+            if (r != 0) {
+                return rand;
+            }
+        }
+        
+        else if (rand < from + quartile || rand > to - quartile) {
+            int r = Random.Range(0, 2);
+            if (r != 0) {
+                return rand;
+            }
+        } 
+        return nonUniformRange(from, to);
+    }
+
+float nonUniformRangePositiveBiased(float to)
+    {
+        
+        float rand = nonUniformRange(0, to);
+        int r = Random.Range(0, 3);
+        if (r != 0) return rand;
+        else return rand * -1;
+
     }
 
     void processInputs()
