@@ -336,3 +336,4 @@ MonoBehaviour:
     useForCollider: 0
   viewer: {fileID: 0}
   mapMaterial: {fileID: 2100000, guid: 438ba0498b66143d593a505ebbfc2452, type: 2}
+  mapPhysicMaterial: {fileID: 13400000, guid: 5d14d24126542402d93bbff69953cda9, type: 2}
