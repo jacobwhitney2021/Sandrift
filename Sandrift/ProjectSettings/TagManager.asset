@@ -5,6 +5,17 @@ TagManager:
   serializedVersion: 2
   tags:
   - Dune
+<<<<<<< Updated upstream
+=======
+  - Sail
+  - Particle
+  - Wind
+  - DuneContactParticle
+  - RocketParticle
+  - NitroParticle
+  - LeftThruster
+  - RightThruster
+>>>>>>> Stashed changes
   layers:
   - Default
   - TransparentFX
