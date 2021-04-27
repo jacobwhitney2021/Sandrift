@@ -23,7 +23,7 @@ public class windForce_script : MonoBehaviour
 
     public Vector3 windVector;
     public float magnitude;
-    public const float maxMagnitude = 8;
+    public const float maxMagnitude = 120;
     public const float maxWind = 15;
     private int windState;
     private const int windStateMax = 60;

@@ -1326,7 +1326,7 @@ PrefabInstance:
     - target: {fileID: 2898423975816325104, guid: 8cc357e1a412d49f7a6e87a648934cae,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2898423975816325104, guid: 8cc357e1a412d49f7a6e87a648934cae,
         type: 3}
@@ -2406,7 +2406,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1230943921
 GameObject:
@@ -2502,7 +2502,7 @@ RectTransform:
   - {fileID: 981586786}
   - {fileID: 1783510413}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -4221,7 +4221,7 @@ PrefabInstance:
     - target: {fileID: 5905968425505685452, guid: a96f5df4fadecb0499566e3875c5360f,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5905968425505685452, guid: a96f5df4fadecb0499566e3875c5360f,
         type: 3}
@@ -6506,7 +6506,7 @@ PrefabInstance:
     - target: {fileID: 6320891249131254804, guid: e8cd96d1d71b8404c9d4b12584f0ef86,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6320891249131254804, guid: e8cd96d1d71b8404c9d4b12584f0ef86,
         type: 3}
@@ -6527,6 +6527,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: WindParticles
+      objectReference: {fileID: 0}
+    - target: {fileID: 6320891250188046243, guid: e8cd96d1d71b8404c9d4b12584f0ef86,
+        type: 3}
+      propertyPath: ShapeModule.m_Scale.x
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 6320891250188046243, guid: e8cd96d1d71b8404c9d4b12584f0ef86,
+        type: 3}
+      propertyPath: ShapeModule.m_Scale.y
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6320891250188046243, guid: e8cd96d1d71b8404c9d4b12584f0ef86,
+        type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e8cd96d1d71b8404c9d4b12584f0ef86, type: 3}

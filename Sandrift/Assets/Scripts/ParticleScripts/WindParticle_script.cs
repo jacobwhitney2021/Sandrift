@@ -5,6 +5,9 @@ using UnityEngine;
 public class WindParticle_script : MonoBehaviour
 {
     private Transform craft_transform;
+    private GameObject sail;
+    public Vector3 windVector;
+    public float windAngle;
 
     public float distance_lag;
 
@@ -13,11 +16,15 @@ public class WindParticle_script : MonoBehaviour
     void Start()
     {
 		craft_transform = GameObject.FindGameObjectWithTag("Player").transform;
+        sail = GameObject.FindGameObjectWithTag("Sail");
     }
 
-    // Update is called once per frame
-    void Update()
+    void Update() 
     {
-        transform.position = craft_transform.position + new Vector3(0f,6f,-distance_lag);
-    }
+        windVector = sail.GetComponent<windForce_script>().windVector;
+        windAngle = Vector3.Angle(Vector3.forward, windVector);
+
+        transform.rotation = Quaternion.Euler(new Vector3(0f, windAngle, 0f));
+        transform.position = craft_transform.position - (windVector.normalized*distance_lag) + new Vector3(0f,10f,0);
+     }
 }
