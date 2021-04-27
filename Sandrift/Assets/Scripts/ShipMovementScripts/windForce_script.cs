@@ -23,7 +23,8 @@ public class windForce_script : MonoBehaviour
 
     public Vector3 windVector;
     public float magnitude;
-    public const float maxMagnitude = 120;
+    public float minMagnitude;
+    public float maxMagnitude;
     public const float maxWind = 15;
     private int windState;
     private const int windStateMax = 60;
@@ -55,9 +56,9 @@ public class windForce_script : MonoBehaviour
         craft_gameobject = craft_transform.gameObject;
 
         windVector.x = nonUniformRange(-1 * maxWind, maxWind);
-        windVector.y = nonUniformRange(-1 * maxWind, maxWind);
+        windVector.y = 0;//nonUniformRange(-1 * maxWind, maxWind);
         windVector.z = nonUniformRangePositiveBiased(maxWind);
-        magnitude = nonUniformRange(0, maxMagnitude);
+        magnitude = nonUniformRange(minMagnitude, maxMagnitude);
         
         windState = 0;
 
@@ -74,8 +75,8 @@ public class windForce_script : MonoBehaviour
     void FixedUpdate()
     {
         updateWind();
-        sailForce = calculateSailForce(windVector, craft_gameobject.GetComponent<Rigidbody>().velocity, transform.forward, sailFullness); 
-        sailTorque = calculateSailTorque(windVector, craft_gameobject.GetComponent<Rigidbody>().velocity, transform.forward, sailFullness); 
+        sailForce = calculateSailForce(magnitude*windVector, craft_gameobject.GetComponent<Rigidbody>().velocity, transform.forward, sailFullness); 
+        sailTorque = calculateSailTorque(magnitude*windVector, craft_gameobject.GetComponent<Rigidbody>().velocity, transform.forward, sailFullness); 
     }
 
 
@@ -95,9 +96,9 @@ public class windForce_script : MonoBehaviour
         Vector3 vec;
         
         vec.x = nonUniformRange(-1 * maxWind, maxWind);
-        vec.y = nonUniformRange(-1 * maxWind, maxWind);
+        vec.y = 0;//nonUniformRange(-1 * maxWind, maxWind);
         vec.z = nonUniformRangePositiveBiased(maxWind);
-        float mag = nonUniformRange(0, maxMagnitude);
+        float mag = nonUniformRange(minMagnitude, maxMagnitude);
 
         windState = -1 * windChangeDur * perSecond;
 
