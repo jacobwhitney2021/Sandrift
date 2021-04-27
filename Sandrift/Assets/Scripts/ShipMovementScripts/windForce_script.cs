@@ -88,6 +88,7 @@ public class windForce_script : MonoBehaviour
         else
         {
             sailFullness += fullnessChange;
+            transform.parent.localScale += new Vector3(0f,20*fullnessChange,0f);
         }
     }
 
@@ -108,7 +109,7 @@ public class windForce_script : MonoBehaviour
         return sailForceVector;
     }
 
-
+// instead of actually applying a torque, maybe just apply a rocking visual effects instead of a real physics effect
     Vector3 calculateSailTorque(Vector3 windVector, Vector3 playerVelocity, Vector3 sailVector, float sailFullness)
     {
         Vector3 apparentWindVector = windVector - playerVelocity;
@@ -118,7 +119,7 @@ public class windForce_script : MonoBehaviour
 
         Vector3 sailTorque;
         if (craft_transform.rotation.z >= -40 || craft_transform.rotation.z <= 40) {
-        sailTorque = -craft_transform.forward * apparentWindVector.magnitude * Mathf.Cos(sailWindAngle*(Mathf.PI/180f)) * Mathf.Sin(sailCraftAngle*(Mathf.PI/180f)) * sailFullness * 0.05f; // maybe make square of wind speed
+        sailTorque = -craft_transform.forward * apparentWindVector.magnitude * Mathf.Cos(sailWindAngle*(Mathf.PI/180f)) * Mathf.Sin(sailCraftAngle*(Mathf.PI/180f)) * sailFullness * 0.01f; // maybe make square of wind speed
         }
         else
             sailTorque = Vector3.zero;
