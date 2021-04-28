@@ -6541,17 +6541,22 @@ PrefabInstance:
     - target: {fileID: 6320891250188046243, guid: e8cd96d1d71b8404c9d4b12584f0ef86,
         type: 3}
       propertyPath: ShapeModule.m_Scale.x
-      value: 180
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 6320891250188046243, guid: e8cd96d1d71b8404c9d4b12584f0ef86,
         type: 3}
       propertyPath: ShapeModule.m_Scale.y
-      value: 20
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 6320891250188046243, guid: e8cd96d1d71b8404c9d4b12584f0ef86,
         type: 3}
       propertyPath: EmissionModule.rateOverTime.scalar
-      value: 25
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 6320891250188046243, guid: e8cd96d1d71b8404c9d4b12584f0ef86,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e8cd96d1d71b8404c9d4b12584f0ef86, type: 3}
