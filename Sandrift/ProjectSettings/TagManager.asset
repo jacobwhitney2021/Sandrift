@@ -10,6 +10,10 @@ TagManager:
   - Wind
   - DuneContactParticle
   - RocketParticle
+  - NitroParticle
+  - RightThruster
+  - LeftThruster
+  - SandWorm
   layers:
   - Default
   - TransparentFX
@@ -26,7 +30,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - Snake
   - 
   - 
   - 

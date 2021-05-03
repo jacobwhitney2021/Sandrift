@@ -12,10 +12,11 @@ public class WormBodyMovement : MonoBehaviour
     public Transform targetDir;
     public float targetDist;
     public float smoothSpeed;
+    public float trailSpeed;
 
-    public float wiggleSpeed;
-    public float wiggleMagnitude;
-    public Transform wiggleDir;
+    //public float wiggleSpeed;
+    //public float wiggleMagnitude;
+    //public Transform wiggleDir;
     public Transform[] bodyParts;
 
     private void Start()
@@ -27,20 +28,20 @@ public class WormBodyMovement : MonoBehaviour
 
     private void Update()
     {
-        float wiggleStep = Time.time * wiggleSpeed;
-        wiggleDir.localRotation = Quaternion.Euler(
-                                    0,
-                                    0,
-                                    Mathf.Sin(wiggleStep) * wiggleMagnitude);
+        //float wiggleStep = Time.time * wiggleSpeed;
+        //wiggleDir.localRotation = Quaternion.Euler(
+        //                            0,
+        //                            0,
+        //                            Mathf.Sin(wiggleStep) * wiggleMagnitude);
         segmentPoses[0] = targetDir.position;
 
         for (int i = 1; i < length; i++)
         {
             segmentPoses[i] = Vector3.SmoothDamp(
                                 segmentPoses[i],
-                                segmentPoses[i - 1] + targetDir.right * targetDist,
+                                segmentPoses[i - 1] + targetDir.up * targetDist,
                                 ref segmentV[i],
-                                smoothSpeed);
+                                smoothSpeed + i / trailSpeed);
         }
         lineRend.SetPositions(segmentPoses);
         for (int i = 0; i < bodyParts.Length; i++)
