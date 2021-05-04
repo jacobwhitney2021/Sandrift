@@ -15,6 +15,8 @@ public class rocketForce_script : MonoBehaviour
     public float maxThrust;
     public float nitroThrust;
 
+    public float nitroMeter;
+
     public float thrustChange;
     public float playerThrust;
 	public float rocketThrust;
@@ -35,6 +37,8 @@ public class rocketForce_script : MonoBehaviour
     {
         rocketInputAxis = gameObject.GetComponent<playerController_script>().rocketInputAxis;
         nitroOn = gameObject.GetComponent<playerController_script>().nitroInput;
+        nitroMeter = gameObject.GetComponent<fuel_script>().nitroMeter;
+        if (nitroMeter==0) nitroOn = false;
         processInputs();
     }
 

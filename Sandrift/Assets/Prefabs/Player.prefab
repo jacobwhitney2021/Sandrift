@@ -24613,6 +24613,9 @@ MonoBehaviour:
   sailPivotSpeed: 25
   sailFullnessSpeed: 0.5
   windVector: {x: 0, y: 0, z: 70}
+  magnitude: 0
+  minMagnitude: 0
+  maxMagnitude: 0
   sailForce: {x: 0, y: 0, z: 0}
   sailTorque: {x: 0, y: 0, z: 0}
 --- !u!1 &1400851044884135934
@@ -38983,9 +38986,10 @@ GameObject:
   - component: {fileID: 5905968425505685491}
   - component: {fileID: 5905968425505685489}
   - component: {fileID: 5905968425505685454}
-  - component: {fileID: 5905968425505685455}
   - component: {fileID: 5905968425505685493}
+  - component: {fileID: 6667936874409306066}
   - component: {fileID: 5905968425505685492}
+  - component: {fileID: 5905968425505685455}
   - component: {fileID: 1400851044151077569}
   m_Layer: 0
   m_Name: Player
@@ -39071,24 +39075,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   totalForce: {x: 0, y: 0, z: 0}
   totalTorque: {x: 0, y: 0, z: 0}
---- !u!114 &5905968425505685455
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5905968425505685453}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0525a9ef598c43346a4432f1e1cddafd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  creaking_clip: {fileID: 8300000, guid: 9f5aa69598c4bbf4fa58377fb39f5f88, type: 3}
-  sailLuffing_clip: {fileID: 8300000, guid: 3dc3f13542856cc4786fbcc6e1eba203, type: 3}
-  lightWind1_clip: {fileID: 8300000, guid: d10c235c95e9f4841982fc2d9f607e1f, type: 3}
-  lightWind2_clip: {fileID: 8300000, guid: 2fe1d3584c6b5014ca6563148240d7fa, type: 3}
-  lightWind3_clip: {fileID: 8300000, guid: 20e063341ff92224dbe1c02808508df8, type: 3}
-  heavyWind1_clip: {fileID: 8300000, guid: 710b8f3297ef1fa48965c866dbf6b7a3, type: 3}
 --- !u!114 &5905968425505685493
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39108,10 +39094,30 @@ MonoBehaviour:
   nitroDecelerationRate: 50
   maxThrust: 50
   nitroThrust: 100
+  nitroMeter: 0
   thrustChange: 0
   playerThrust: 0
   rocketThrust: 0
   rocketForce: {x: 0, y: 0, z: 0}
+--- !u!114 &6667936874409306066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5905968425505685453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7df3cad24be260c4aa73ce1ab1d8e352, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fuelMeter: 0
+  nitroMeter: 0
+  fuelDrainRate: 0.001
+  nitroDrainRate: 0.7
+  nitroCooldownTime: 10
+  playerThrust: 0
+  nitroOn: 0
 --- !u!114 &5905968425505685492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39126,6 +39132,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   torque: 80
   rudderTorque: {x: 0, y: 0, z: 0}
+--- !u!114 &5905968425505685455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5905968425505685453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0525a9ef598c43346a4432f1e1cddafd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  creaking_clip: {fileID: 8300000, guid: 9f5aa69598c4bbf4fa58377fb39f5f88, type: 3}
+  sailLuffing_clip: {fileID: 8300000, guid: 3dc3f13542856cc4786fbcc6e1eba203, type: 3}
+  lightWind1_clip: {fileID: 8300000, guid: d10c235c95e9f4841982fc2d9f607e1f, type: 3}
+  lightWind2_clip: {fileID: 8300000, guid: 2fe1d3584c6b5014ca6563148240d7fa, type: 3}
+  lightWind3_clip: {fileID: 8300000, guid: 20e063341ff92224dbe1c02808508df8, type: 3}
+  heavyWind1_clip: {fileID: 8300000, guid: 710b8f3297ef1fa48965c866dbf6b7a3, type: 3}
 --- !u!82 &1400851044151077569
 AudioSource:
   m_ObjectHideFlags: 0
