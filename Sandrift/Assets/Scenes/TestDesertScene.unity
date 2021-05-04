@@ -6386,6 +6386,37 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 5114667021055550465, guid: ce91aac667cdf984788fbddb0ea74fe2, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: ce91aac667cdf984788fbddb0ea74fe2, type: 3}
+--- !u!1 &6416601203945547221 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6416601202766299605, guid: ce91aac667cdf984788fbddb0ea74fe2,
+    type: 3}
+  m_PrefabInstance: {fileID: 6416601203945547220}
+  m_PrefabAsset: {fileID: 0}
+--- !u!169 &6416601203945547222
+AudioLowPassFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6416601203945547221}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_LowpassResonanceQ: 1
+  lowpassLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.10591178
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &7358997488108673447
 PrefabInstance:
   m_ObjectHideFlags: 0

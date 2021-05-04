@@ -7,6 +7,7 @@ public class SailSounds : MonoBehaviour
     public AudioSource audioSourceSailDown;
     public AudioSource audioSourceTrimSail;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +21,7 @@ public class SailSounds : MonoBehaviour
         {
             if (!audioSourceSailDown.isPlaying)
             {
+                StartCoroutine(FadeAudioSource.StartFade(audioSourceSailDown, 1f, 1f));
                 audioSourceSailDown.loop = true;
                 audioSourceSailDown.Play();
             }
@@ -28,6 +30,7 @@ public class SailSounds : MonoBehaviour
         {
             if (audioSourceSailDown.isPlaying)
             {
+                StartCoroutine(FadeAudioSource.StartFade(audioSourceSailDown, 1f, 0f));
                 audioSourceSailDown.loop = false;
                 audioSourceSailDown.Stop();
             }
@@ -37,6 +40,7 @@ public class SailSounds : MonoBehaviour
         {
             if (!audioSourceSailDown.isPlaying)
             {
+                StartCoroutine(FadeAudioSource.StartFade(audioSourceSailDown, 1f, 1f));
                 audioSourceSailDown.loop = true;
                 audioSourceSailDown.Play();
             }
@@ -45,6 +49,7 @@ public class SailSounds : MonoBehaviour
         {
             if (audioSourceSailDown.isPlaying)
             {
+                StartCoroutine(FadeAudioSource.StartFade(audioSourceSailDown, 1f, 0f));
                 audioSourceSailDown.loop = false;
                 audioSourceSailDown.Stop();
             }
@@ -53,11 +58,11 @@ public class SailSounds : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow))
         {
-            if (!audioSourceTrimSail.isPlaying)
-            {
-                audioSourceTrimSail.loop = true;
-                audioSourceTrimSail.Play();
-            }
+
+            StartCoroutine(FadeAudioSource.StartFade(audioSourceTrimSail, 1f, .167f));
+            audioSourceTrimSail.loop = true;
+            audioSourceTrimSail.Play();
+
 
         }
 
@@ -65,8 +70,9 @@ public class SailSounds : MonoBehaviour
         {
             if (audioSourceTrimSail.isPlaying)
             {
+                StartCoroutine(FadeAudioSource.StartFade(audioSourceTrimSail, .7f, 0f));
                 audioSourceTrimSail.loop = false;
-                audioSourceTrimSail.Stop();
+
             }
 
         }

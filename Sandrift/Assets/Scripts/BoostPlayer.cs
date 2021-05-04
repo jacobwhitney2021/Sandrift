@@ -7,10 +7,11 @@ public class BoostPlayer : MonoBehaviour
     public AudioSource audioSourceBoost;
     public AudioSource audioSourceTurnBoost;
 
+
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -20,6 +21,7 @@ public class BoostPlayer : MonoBehaviour
         {
             if (!audioSourceBoost.isPlaying)
             {
+                StartCoroutine(FadeAudioSource.StartFade(audioSourceBoost, 1f, .7f));
                 audioSourceBoost.loop = true;
                 audioSourceBoost.Play();
             }
@@ -28,31 +30,31 @@ public class BoostPlayer : MonoBehaviour
         {
             if (audioSourceBoost.isPlaying)
             {
+                StartCoroutine(FadeAudioSource.StartFade(audioSourceBoost, 1f, 0f));
                 audioSourceBoost.loop = false;
                 audioSourceBoost.Stop();
             }
         }
 
-
-
         if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
         {
-            if (!audioSourceTurnBoost.isPlaying)
-            {
-                audioSourceTurnBoost.loop = true;
-                audioSourceTurnBoost.Play();
-            }
-            
+
+            StartCoroutine(FadeAudioSource.StartFade(audioSourceTurnBoost, 1f, .21f));
+            audioSourceTurnBoost.loop = true;
+            audioSourceTurnBoost.Play();
+
+
         }
 
         if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
         {
             if (audioSourceTurnBoost.isPlaying)
             {
+                StartCoroutine(FadeAudioSource.StartFade(audioSourceTurnBoost, .7f, 0f));
                 audioSourceTurnBoost.loop = false;
-                audioSourceTurnBoost.Stop();
+
             }
-            
+
         }
     }
 }
