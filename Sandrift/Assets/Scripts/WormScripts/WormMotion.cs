@@ -5,27 +5,32 @@ using UnityEngine;
 
 public class WormMotion : MonoBehaviour
 {
-
-    public float moveForce = 40.0f;
-    public float rotationSpeed = 45.0f;
-    public float turnAngle = 60.0f;
-    public Vector2 decisionTime = new Vector2(10f, 15f);
-    public float smoothSpeed = 0.3f;
-
     public GameObject head;
     public GameObject bodyPartsPrefab;
+
+    public float moveForce;
+    public float rotationSpeed;
+    public float turnAngle;
+    public float smoothSpeed;
+    public int bodyPartsLength;
+    public float trailTime;
+    public Vector2 decisionTime = new Vector2(10f, 15f);
+
     private GameObject bodyPartsHolder;
 
     internal float decisionTimeCount = 0;
 
     internal Vector3 currDirec;
 
-    public int bodyPartsLength = 10;
     private GameObject[] bodyPartsList;
 
     private Rigidbody headRB;
     private TrailRenderer headTR;
     private MeshCollider headMC;
+
+    //public float slitherSpeed = 90.0f;
+    //public float trailAngleLim = 30.0f;
+    //private bool trailDirec;
 
     internal Vector3 backVertexMesh;
     internal Vector3 frontVertexMesh;
@@ -35,6 +40,8 @@ public class WormMotion : MonoBehaviour
         headRB = head.GetComponent<Rigidbody>();
         headMC = head.GetComponent<MeshCollider>();
         headTR = head.GetComponentInChildren<TrailRenderer>();
+
+        headTR.time = trailTime;
 
         decisionTimeCount = Random.Range(decisionTime.x, decisionTime.y);
 
@@ -47,6 +54,8 @@ public class WormMotion : MonoBehaviour
         bodyPartsHolder.transform.localScale = Vector3.one;
 
         bodyPartsList = new GameObject[bodyPartsLength];
+
+        //trailDirec = true;
     }
 
     void Update()
@@ -62,13 +71,13 @@ public class WormMotion : MonoBehaviour
         Quaternion wantedAngle = Quaternion.AngleAxis(angle, Vector3.up);
 
         headRB.rotation = Quaternion.RotateTowards(
-                                    headRB.rotation,
-                                    wantedAngle,
-                                    Time.deltaTime * rotationSpeed);
+                                            headRB.rotation,
+                                            wantedAngle,
+                                            Time.deltaTime * rotationSpeed);
 
         if (headRB.rotation == wantedAngle)
         {
-            Vector3 currForce = currDirec * moveForce * headRB.mass;
+            Vector3 currForce = (-1*headRB.transform.right) * moveForce * headRB.mass;
             headRB.AddForce(currForce);
         }
 
@@ -93,7 +102,6 @@ public class WormMotion : MonoBehaviour
         int bpLength = bodyPartsLength;
         int bpIndex = 0;
         int bpStep = length / bpLength;
-        print(length);
         for (int index = length-1; (index > 0 && bpIndex < bpLength); index -= bpStep)
         {
             if (bodyPartsList[bpIndex] == null)
@@ -113,7 +121,7 @@ public class WormMotion : MonoBehaviour
                                 currBP.position,
                                 positions[index],
                                 ref currVelocity,
-                                Time.deltaTime* smoothSpeed);
+                                Time.deltaTime*smoothSpeed);
 
             if (bpIndex == 0)
             {
@@ -135,6 +143,37 @@ public class WormMotion : MonoBehaviour
             bpIndex++;
         }
     }
+
+    //void SlitherHead()
+    //{
+    //    Quaternion leftSide = Quaternion.AngleAxis(trailAngleLim, Vector3.up);
+    //    Quaternion rightSide = Quaternion.AngleAxis(-1 * trailAngleLim, Vector3.up);
+
+    //    if (trailDirec)
+    //    {
+    //        Debug.Log("SLITHER RIGHT");
+    //        headRB.rotation = Quaternion.RotateTowards(
+    //                                headRB.rotation,
+    //                                rightSide,
+    //                                Time.deltaTime * slitherSpeed);
+    //        if(headRB.rotation == rightSide)
+    //        {
+    //            trailDirec = false;
+    //        }
+    //    }
+    //    else
+    //    {
+    //        Debug.Log("SLITHER LEFT");
+    //        headRB.rotation = Quaternion.RotateTowards(
+    //                                headRB.rotation,
+    //                                leftSide,
+    //                                Time.deltaTime * slitherSpeed);
+    //        if (headRB.rotation == leftSide)
+    //        {
+    //            trailDirec = true;
+    //        }
+    //    }
+    //}
 
     void ChooseMoveDirection()
     {
@@ -199,17 +238,5 @@ public class WormMotion : MonoBehaviour
         Gizmos.color = Color.magenta;
         Gizmos.DrawSphere(frontVertexMesh, 1);
         Gizmos.DrawSphere(backVertexMesh, 1);
-
-        //int posLength = 20000;
-        //Vector3[] positions = new Vector3[posLength];
-        //int length = headTR.GetPositions(positions);
-        //int index = 0;
-        //print(length);
-        //Gizmos.DrawCube(positions[0], Vector3.one * 50);
-        //while (positions[index] != null && index <= length)
-        //{
-        //    Gizmos.DrawCube(positions[index], Vector3.one * 50 * (index / 30));
-        //    index += 30;
-        //}
     }
 }
