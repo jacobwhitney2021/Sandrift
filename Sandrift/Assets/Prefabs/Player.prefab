@@ -24319,7 +24319,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1400851044589992506}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 23.7, z: -1.9472976}
+  m_LocalPosition: {x: -0.1, y: 23.7, z: -1.9472976}
   m_LocalScale: {x: 95.38322, y: 339.30496, z: 23.747248}
   m_Children:
   - {fileID: 1400851043294449488}
@@ -38984,11 +38984,13 @@ GameObject:
   - component: {fileID: 5905968425505685452}
   - component: {fileID: 5905968425505685490}
   - component: {fileID: 5905968425505685491}
+  - component: {fileID: 3075565559129402243}
   - component: {fileID: 5905968425505685489}
   - component: {fileID: 5905968425505685454}
   - component: {fileID: 5905968425505685493}
   - component: {fileID: 6667936874409306066}
   - component: {fileID: 5905968425505685492}
+  - component: {fileID: 1970256557866748470}
   - component: {fileID: 5905968425505685455}
   - component: {fileID: 1400851044151077569}
   m_Layer: 0
@@ -39042,8 +39044,22 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4.4300222, y: 4.6228476, z: 1.7902635}
-  m_Center: {x: 0, y: 27.37292, z: 0}
+  m_Size: {x: 4.4300222, y: 4.6228476, z: 1.8398592}
+  m_Center: {x: 0, y: 27.37292, z: -0.1}
+--- !u!136 &3075565559129402243
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5905968425505685453}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.25
+  m_Height: 4.770178
+  m_Direction: 0
+  m_Center: {x: 0, y: 28.2, z: 0.9}
 --- !u!114 &5905968425505685489
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39082,7 +39098,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5905968425505685453}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9f08435998d06364b8cfdf9fab49fa64, type: 3}
   m_Name: 
@@ -39132,6 +39148,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   torque: 110
   rudderTorque: {x: 0, y: 0, z: 0}
+--- !u!114 &1970256557866748470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5905968425505685453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9c6899d0ce15014aafc58830a079705, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &5905968425505685455
 MonoBehaviour:
   m_ObjectHideFlags: 0
