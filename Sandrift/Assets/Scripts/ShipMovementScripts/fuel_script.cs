@@ -19,7 +19,8 @@ public class fuel_script : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-		fuelMeter = 1f;
+		// can change these later to be something else if needed
+        fuelMeter = 1f;
 		nitroMeter = 1f;
     }
 
@@ -41,7 +42,11 @@ public class fuel_script : MonoBehaviour
         	}
         } 
 
-
+        if (nitroMeter<1 && nitroMeter>0)
+        {
+            nitroOn = true;
+        }
+        
         if (nitroOn)
         {
         	if ((nitroMeter - nitroDrainRate*Time.deltaTime) < 0)

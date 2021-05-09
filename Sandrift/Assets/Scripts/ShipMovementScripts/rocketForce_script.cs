@@ -38,6 +38,10 @@ public class rocketForce_script : MonoBehaviour
         rocketInputAxis = gameObject.GetComponent<playerController_script>().rocketInputAxis;
         nitroOn = gameObject.GetComponent<playerController_script>().nitroInput;
         nitroMeter = gameObject.GetComponent<fuel_script>().nitroMeter;
+        if (nitroMeter<1 && nitroMeter>0)
+        {
+            nitroOn = true;
+        }
         if (nitroMeter==0) nitroOn = false;
         processInputs();
     }
@@ -49,37 +53,21 @@ public class rocketForce_script : MonoBehaviour
 
     void processInputs()
     {
-        // float thrustChange = rocketInputAxis * sailPivotSpeed * Time.deltaTime;
-        // float decelerationPerSec = decelerationRate * Time.deltaTime;
-        // if (rocketInputAxis>0)
-        // {
-        // 	float thrustChange = rocketInputAxis * thrustPerSec;
-	       //  if (!nitroOn && (rocketThrust+thrustChange >= maxThrust)) 
-	       //  {
-	       //  	rocketThrust = maxThrust;
-	       //  }
-	       //  else 
-	       //  {
-	       //  	rocketThrust += thrustChange;
-	       //  }
-        // }
-        // else if (rocketThrust>0)
-        // {
-        // 	if ((rocketThrust-decelerationPerSec)>0) rocketThrust -= decelerationPerSec;
-        // 	else rocketThrust = 0;
-        // }
+        thrustChange = rocketInputAxis * rocketDecelerationRate * Time.deltaTime;
 
-
-
-        if (rocketInputAxis>=0)
+        if (playerThrust+thrustChange >= maxThrust) 
         {
-            thrustChange = rocketInputAxis * rocketAccelerationRate * Time.deltaTime;
+            playerThrust = maxThrust;
+        }
+        else if (playerThrust+thrustChange <= 0)
+        {
+            playerThrust = 0;
         }
         else
         {
-            thrustChange = rocketInputAxis * rocketDecelerationRate * Time.deltaTime;
+            playerThrust += thrustChange;
         }
-
+        
 
         if (nitroOn)
         {
@@ -91,22 +79,8 @@ public class rocketForce_script : MonoBehaviour
         }
         else
         {
-            if (playerThrust+thrustChange >= maxThrust) 
-            {
-                playerThrust = maxThrust;
-            }
-            else if (playerThrust+thrustChange <= 0)
-            {
-                playerThrust = 0;
-            }
-            else
-            {
-                playerThrust += thrustChange;
-            }
             rocketThrust = playerThrust;
         }
-
-
     }
 
     Vector3 calculateRocketForce(float rocketThrust)
@@ -115,9 +89,4 @@ public class rocketForce_script : MonoBehaviour
         return rocketForce;
     }
 
-    // void consumeFuel()
-    // {
-    //     int fuelConsumed = nitroOn ? (int)(nitroThrust * 1.5f) : rocketThrust; // TODO do we want the fuel function to be linear or not
-    //     fuel -= fuelConsumed;
-    // }
 }
