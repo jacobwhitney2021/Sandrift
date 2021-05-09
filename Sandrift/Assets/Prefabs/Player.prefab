@@ -24614,8 +24614,8 @@ MonoBehaviour:
   sailFullnessSpeed: 0.5
   windVector: {x: 0, y: 0, z: 70}
   magnitude: 0
-  minMagnitude: 0
-  maxMagnitude: 0
+  minMagnitude: 5
+  maxMagnitude: 10
   sailForce: {x: 0, y: 0, z: 0}
   sailTorque: {x: 0, y: 0, z: 0}
 --- !u!1 &1400851044884135934
@@ -39025,7 +39025,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 2
   m_Drag: 1
-  m_AngularDrag: 7
+  m_AngularDrag: 6
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -39130,7 +39130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a3672288a20ff44da584deb60b949e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  torque: 80
+  torque: 110
   rudderTorque: {x: 0, y: 0, z: 0}
 --- !u!114 &5905968425505685455
 MonoBehaviour:
