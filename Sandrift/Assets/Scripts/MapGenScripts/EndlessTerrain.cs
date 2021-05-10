@@ -27,12 +27,25 @@ public class EndlessTerrain : MonoBehaviour {
     Dictionary<Vector2, TerrainChunk> terrainChunkDictionary = new Dictionary<Vector2, TerrainChunk>();
     static List<TerrainChunk> terrainChunksVisibleLastUpdate = new List<TerrainChunk>();
 
+    public float watersEdge = 5;
+    float watersDist;
+    float shoreDist;
+    float[,] normalRegion;
+    float[,] oceanRegion;
+    float[,] shoreRegion;
+
     private void Start() {
         mapGenerator = FindObjectOfType<MapGenerator>();
 
         maxViewDst = detailLevels[detailLevels.Length - 1].visibleDstThreshold;
         chunkSize = MapGenerator.mapChunkSize - 1;
         chunksVisibleInViewDst = Mathf.RoundToInt(maxViewDst / chunkSize);
+
+        normalRegion = RegionGenerator.GenerateNormalMap(chunkSize + 1);
+        oceanRegion = RegionGenerator.GenerateOceanMap(chunkSize + 1);
+        shoreRegion = FalloffGenerator.GenerateFalloffMap(chunkSize + 1);
+        shoreDist = (new Vector2(watersEdge, watersEdge)).magnitude;
+        watersDist = (new Vector2(watersEdge+1, watersEdge+1)).magnitude;
 
         UpdateVisibleChunks();
     }
@@ -65,6 +78,19 @@ public class EndlessTerrain : MonoBehaviour {
                 if (terrainChunkDictionary.ContainsKey(viewedChunkCoord)) {
                     terrainChunkDictionary[viewedChunkCoord].UpdateTerrainChunk();
                 } else {
+                    float[,] currRegion = normalRegion;
+                    if (viewedChunkCoord.magnitude > watersDist)
+                    {
+                        currRegion = oceanRegion;
+                    }
+                    else if (viewedChunkCoord.magnitude <= watersDist && viewedChunkCoord.magnitude > shoreDist)
+                    {
+                        currRegion = shoreRegion;
+                    }
+                    Debug.Log("CURR REGION");
+                    Debug.Log(currRegion.ToString());
+
+
                     terrainChunkDictionary.Add(
                                             viewedChunkCoord,
                                             new TerrainChunk(
@@ -73,7 +99,8 @@ public class EndlessTerrain : MonoBehaviour {
                                                     detailLevels,
                                                     transform,
                                                     mapMaterial,
-                                                    mapPhysicMaterial));
+                                                    mapPhysicMaterial,
+                                                    currRegion));
                 }
             }
         }
@@ -97,7 +124,11 @@ public class EndlessTerrain : MonoBehaviour {
         bool mapDataReceived;
         int previousLODIndex = -1;
 
-        public TerrainChunk(Vector2 coord, int size, LODInfo[] detailLevels, Transform parent, Material mapMaterial, PhysicMaterial mapPhysicMaterial)
+        float[,] terrainType;
+
+        public TerrainChunk(Vector2 coord, int size, LODInfo[] detailLevels,
+                            Transform parent, Material mapMaterial, PhysicMaterial mapPhysicMaterial,
+                            float[,] terrainMap)
         {
             this.detailLevels = detailLevels;
 
@@ -118,6 +149,8 @@ public class EndlessTerrain : MonoBehaviour {
             //meshObject.transform.localScale = Vector3.one * scale;
             SetVisible(false);
 
+            terrainType = terrainMap;
+
             lodMeshes = new LODMesh[detailLevels.Length];
             for (int i = 0; i < detailLevels.Length; i++)
             {
@@ -128,7 +161,7 @@ public class EndlessTerrain : MonoBehaviour {
                 }
             }
 
-            mapGenerator.RequestMapData(position, OnMapDataReceived);
+            mapGenerator.RequestMapData(position, terrainType, OnMapDataReceived);
         }
 
         void OnMapDataReceived(MapData mapData)

@@ -242,7 +242,6 @@ MonoBehaviour:
   lacunarity: 1
   seed: 0
   offset: {x: -50.59, y: 9.84}
-  useFalloff: 0
   meshHeightMultiplier: 56
   meshHeightCurve:
     serializedVersion: 2
@@ -326,14 +325,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   detailLevels:
   - lod: 0
-    visibleDstThreshold: 200
-    useForCollider: 0
-  - lod: 1
-    visibleDstThreshold: 500
+    visibleDstThreshold: 400
     useForCollider: 1
+  - lod: 1
+    visibleDstThreshold: 1000
+    useForCollider: 0
   - lod: 4
-    visibleDstThreshold: 800
+    visibleDstThreshold: 1600
     useForCollider: 0
   viewer: {fileID: 0}
   mapMaterial: {fileID: 2100000, guid: 438ba0498b66143d593a505ebbfc2452, type: 2}
   mapPhysicMaterial: {fileID: 13400000, guid: 5d14d24126542402d93bbff69953cda9, type: 2}
+  watersEdge: 5

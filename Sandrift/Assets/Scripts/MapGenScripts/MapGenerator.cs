@@ -23,7 +23,7 @@ public class MapGenerator : MonoBehaviour {
     public int seed;
     public Vector2 offset;
 
-    public bool useFalloff;
+    //public bool useFalloff;
 
     public float meshHeightMultiplier;
     public AnimationCurve meshHeightCurve;
@@ -33,6 +33,7 @@ public class MapGenerator : MonoBehaviour {
     public TerrainType[] regions;
 
     float[,] falloffMap;
+    float[,] normalMap;
 
     Queue<MapThreadInfo<MapData>> mapDataThreadInfoQueue = new Queue<MapThreadInfo<MapData>>();
     Queue<MapThreadInfo<MeshData>> meshDataThreadInfoQueue = new Queue<MapThreadInfo<MeshData>>();
@@ -40,11 +41,12 @@ public class MapGenerator : MonoBehaviour {
     private void Awake()
     {
         falloffMap = FalloffGenerator.GenerateFalloffMap(mapChunkSize);
+        normalMap = RegionGenerator.GenerateNormalMap(mapChunkSize);
     }
 
     public void DrawMapInEditor()
     {
-        MapData mapData = GenerateMapData (Vector2.zero);
+        MapData mapData = GenerateMapData (Vector2.zero, normalMap);
 
         MapDisplay display = FindObjectOfType<MapDisplay>();
         if (drawMode == DrawMode.NoiseMap)
@@ -84,17 +86,17 @@ public class MapGenerator : MonoBehaviour {
 
     }
 
-    public void RequestMapData(Vector2 center, Action<MapData> callback) {
+    public void RequestMapData(Vector2 center, float[,] terrainMap, Action<MapData> callback) {
         ThreadStart threadStart = delegate {
-            MapDataThread(center, callback);
+            MapDataThread(center, terrainMap, callback);
         };
 
         new Thread(threadStart).Start();
     }
 
-    void MapDataThread(Vector2 center, Action<MapData> callback)
+    void MapDataThread(Vector2 center, float[,] terrainMap, Action<MapData> callback)
     {
-        MapData mapData = GenerateMapData(center);
+        MapData mapData = GenerateMapData(center, terrainMap);
         lock (mapDataThreadInfoQueue) {
             mapDataThreadInfoQueue.Enqueue(new MapThreadInfo<MapData>(callback, mapData));
         }
@@ -142,7 +144,7 @@ public class MapGenerator : MonoBehaviour {
         }
     }
 
-    private MapData GenerateMapData(Vector2 center)
+    private MapData GenerateMapData(Vector2 center, float[,] terrainMap)
     {
         float[,] noiseMap = Noise.GenerateNoiseMap(
                                 mapChunkSize + 2,
@@ -161,10 +163,8 @@ public class MapGenerator : MonoBehaviour {
         {
             for (int x = 0; x < mapChunkSize; x++)
             {
-                if (useFalloff)
-                {
-                    noiseMap[x, y] = Mathf.Clamp01(noiseMap[x, y] - falloffMap[x, y]);
-                }
+                noiseMap[x, y] = Mathf.Clamp01(noiseMap[x, y] - terrainMap[x, y]);
+
                 float currentHeight = noiseMap[x, y];
                 for (int i = 0; i < regions.Length; i++)
                 {
@@ -199,6 +199,7 @@ public class MapGenerator : MonoBehaviour {
             octaves = 15;
         }
         falloffMap = FalloffGenerator.GenerateFalloffMap(mapChunkSize);
+        normalMap = RegionGenerator.GenerateNormalMap(mapChunkSize);
     }
 
     struct MapThreadInfo<T>
