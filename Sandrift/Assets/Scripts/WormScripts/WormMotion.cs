@@ -8,13 +8,13 @@ public class WormMotion : MonoBehaviour
     public GameObject head;
     public GameObject bodyPartsPrefab;
 
-    public float moveForce;
-    public float rotationSpeed;
-    public float turnAngle;
-    public float smoothSpeed;
-    public int bodyPartsLength;
-    public float trailTime;
-    public Vector2 decisionTime = new Vector2(10f, 15f);
+    public float moveForce = 35;
+    public float rotationSpeed = 65;
+    public float turnAngle = 70;
+    public float smoothSpeed = 5;
+    public int bodyPartsLength = 20;
+    public float trailTime = 15;
+    public Vector2 decisionTime = new Vector2(5f, 8f);
 
     private GameObject bodyPartsHolder;
 
@@ -27,10 +27,6 @@ public class WormMotion : MonoBehaviour
     private Rigidbody headRB;
     private TrailRenderer headTR;
     private MeshCollider headMC;
-
-    //public float slitherSpeed = 90.0f;
-    //public float trailAngleLim = 30.0f;
-    //private bool trailDirec;
 
     internal Vector3 backVertexMesh;
     internal Vector3 frontVertexMesh;
@@ -54,15 +50,12 @@ public class WormMotion : MonoBehaviour
         bodyPartsHolder.transform.localScale = Vector3.one;
 
         bodyPartsList = new GameObject[bodyPartsLength];
-
-        //trailDirec = true;
     }
 
     void Update()
     {
         MoveRotateHead();
         MoveBodyParts();
-        //HittingTerrain();
     }
 
     void MoveRotateHead()
@@ -144,37 +137,6 @@ public class WormMotion : MonoBehaviour
         }
     }
 
-    //void SlitherHead()
-    //{
-    //    Quaternion leftSide = Quaternion.AngleAxis(trailAngleLim, Vector3.up);
-    //    Quaternion rightSide = Quaternion.AngleAxis(-1 * trailAngleLim, Vector3.up);
-
-    //    if (trailDirec)
-    //    {
-    //        Debug.Log("SLITHER RIGHT");
-    //        headRB.rotation = Quaternion.RotateTowards(
-    //                                headRB.rotation,
-    //                                rightSide,
-    //                                Time.deltaTime * slitherSpeed);
-    //        if(headRB.rotation == rightSide)
-    //        {
-    //            trailDirec = false;
-    //        }
-    //    }
-    //    else
-    //    {
-    //        Debug.Log("SLITHER LEFT");
-    //        headRB.rotation = Quaternion.RotateTowards(
-    //                                headRB.rotation,
-    //                                leftSide,
-    //                                Time.deltaTime * slitherSpeed);
-    //        if (headRB.rotation == leftSide)
-    //        {
-    //            trailDirec = true;
-    //        }
-    //    }
-    //}
-
     void ChooseMoveDirection()
     {
         currDirec = (Quaternion.AngleAxis(Random.Range(-1 * turnAngle, turnAngle), Vector3.up) * currDirec).normalized;
@@ -193,50 +155,4 @@ public class WormMotion : MonoBehaviour
             headRB.velocity *= 2;
         }
     }
-
-    //void GettingTipsOfMesh()
-    //{
-    //    Mesh mesh = headMC.sharedMesh;
-    //    Bounds bounds = mesh.bounds;
-    //    Vector3 extents = bounds.extents;
-    //    frontVertexMesh = head.transform.TransformPoint(bounds.center + new Vector3(1 * extents.x, 0, 0));
-    //    backVertexMesh = head.transform.TransformPoint(bounds.center + new Vector3(-1 * extents.x, 0, 0));
-    //}
-
-    //void HittingTerrain()
-    //{
-    //    GettingTipsOfMesh();
-    //    Vector3 hitVector = head.transform.TransformDirection(Vector3.down);
-
-    //    RaycastHit hit;
-    //    if (Physics.Raycast(frontVertexMesh, hitVector, out hit))
-    //    {
-    //        Debug.DrawRay(frontVertexMesh, hitVector * hit.distance, Color.yellow);
-    //        //Debug.Log("Did Hit");
-    //    }
-    //    else
-    //    {
-    //        Debug.DrawRay(frontVertexMesh, hitVector * 1000, Color.white);
-    //        //Debug.Log("Did not Hit");
-    //    }
-
-    //    RaycastHit hit1;
-    //    if (Physics.Raycast(backVertexMesh, hitVector, out hit1))
-    //    {
-    //        Debug.DrawRay(backVertexMesh, hitVector * hit1.distance, Color.yellow);
-    //        //Debug.Log("Did Hit");
-    //    }
-    //    else
-    //    {
-    //        Debug.DrawRay(backVertexMesh, hitVector * 1000, Color.white);
-    //        //Debug.Log("Did not Hit");
-    //    }
-    //}
-
-    //void OnDrawGizmos()
-    //{
-    //    Gizmos.color = Color.magenta;
-    //    Gizmos.DrawSphere(frontVertexMesh, 1);
-    //    Gizmos.DrawSphere(backVertexMesh, 1);
-    //}
 }
