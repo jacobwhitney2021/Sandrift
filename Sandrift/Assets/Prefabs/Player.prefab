@@ -24610,12 +24610,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sailFullness: 0
-  sailPivotSpeed: 25
+  sailPivotSpeed: 30
   sailFullnessSpeed: 0.5
   windVector: {x: 0, y: 0, z: 70}
   magnitude: 0
-  minMagnitude: 5
-  maxMagnitude: 10
+  minMagnitude: 6
+  maxMagnitude: 9
   sailForce: {x: 0, y: 0, z: 0}
   sailTorque: {x: 0, y: 0, z: 0}
 --- !u!1 &1400851044884135934
