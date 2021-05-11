@@ -21,16 +21,13 @@ public class health_control : MonoBehaviour
 
     void OnCollisionEnter(Collision other)
     {
-        if (other.collider.name.Contains("Cactus")) {
-            Debug.Log("cactus");
+        if (other.collider.name.Contains("Worm")) {
+            Debug.Log("worm");
             health -= 5;
         }
-        if (other.collider.name.Contains("Snake")) {
-            Debug.Log("snake");
-            health -= 5;
-        }
+
         if (health < 0) {
-            SceneManager.LoadScene(3);
+            SceneManager.LoadScene("DieMenu");
         }
     }
 }

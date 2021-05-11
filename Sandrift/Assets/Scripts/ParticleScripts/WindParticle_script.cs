@@ -22,7 +22,9 @@ public class WindParticle_script : MonoBehaviour
     void Update() 
     {
         windVector = sail.GetComponent<windForce_script>().windVector;
-        windAngle = Vector3.Angle(Vector3.forward, windVector);
+        windAngle = -1 * Vector3.SignedAngle(Vector3.forward, windVector, Vector3.up);
+        Debug.Log("wind " + windAngle);
+        Debug.Log("old " + Vector3.Angle(Vector3.forward, windVector));
 
         transform.rotation = Quaternion.Euler(new Vector3(0f, -windAngle, 0f));
         transform.position = craft_transform.position - (windVector.normalized*distance_lag);

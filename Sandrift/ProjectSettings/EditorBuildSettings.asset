@@ -14,7 +14,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MapGen.unity
     guid: ccc9c186b310f4166b62fce8f5b29863
+  - enabled: 1
+    path: Assets/Scenes/EndMenu.unity
+    guid: 9c2f0f8304201524fb504b648323cb28
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/DieMenu.unity
+    guid: 166c1be591f724dfe99ca2ff2308eda9
   m_configObjects: {}
