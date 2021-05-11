@@ -28,9 +28,9 @@ public class windForce_script : MonoBehaviour
     public const float maxWind = 15;
     private int windState;
     private const int windStateMax = 60;
-    private const int perSecond = 50;
+    private const int perSecond = 30;
 
-    private const int windChangeDur = 10;
+    private const int windChangeDur = 15;
 
     public Vector3 sailForce;
     public Vector3 sailTorque;
