@@ -38994,6 +38994,7 @@ GameObject:
   - component: {fileID: 1970256557866748470}
   - component: {fileID: 5905968425505685455}
   - component: {fileID: 1400851044151077569}
+  - component: {fileID: 9006005892569918683}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -39161,7 +39162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9c6899d0ce15014aafc58830a079705, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  worm: {fileID: 0}
+  worm: {fileID: 7389292214434475507, guid: b0be6cf273f2e4170836108ce9961721, type: 3}
   spawn1: {x: 50, y: 60, z: 250}
   spawn2: {x: 350, y: 60, z: 450}
   spawn3: {x: 650, y: 60, z: 650}
@@ -39279,6 +39280,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &9006005892569918683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5905968425505685453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d3ef85c2e7514b7bb7d4a3170f46ea4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
 --- !u!1 &7929667388189418168
 GameObject:
   m_ObjectHideFlags: 0
