@@ -23,7 +23,6 @@ public class EnemySpawner_Script : MonoBehaviour
     Vector3 forward;
     void Start()
     {
-
         enemies = new GameObject[enemyCount];
         enemies[0] = enemy1;
         //enemies[1] = enemy2;

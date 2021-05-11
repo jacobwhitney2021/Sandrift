@@ -7,6 +7,8 @@ public class SceneSwitch : MonoBehaviour
 {
     void OnTriggerEnter(Collider other)
     {
-        SceneManager.LoadScene(3);
+        if (other.name == "Player") {
+            SceneManager.LoadScene(3);
+        }
     }
 }
