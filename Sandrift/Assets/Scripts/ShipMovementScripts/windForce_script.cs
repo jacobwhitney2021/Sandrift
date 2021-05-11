@@ -124,7 +124,7 @@ public class windForce_script : MonoBehaviour
     {
         
         Vector3 vec = createVector();
-        Debug.Log("x = " + vec.x + "   z = " + vec.z);
+        //Debug.Log("x = " + vec.x + "   z = " + vec.z);
         float mag = nonUniformRange(minMagnitude, maxMagnitude);
 
         windState = -1 * windChangeDur * perSecond;
