@@ -62,7 +62,7 @@ public class WormMotion : MonoBehaviour
     {
         MoveRotateHead();
         MoveBodyParts();
-        HittingTerrain();
+        //HittingTerrain();
     }
 
     void MoveRotateHead()
@@ -194,49 +194,49 @@ public class WormMotion : MonoBehaviour
         }
     }
 
-    void GettingTipsOfMesh()
-    {
-        Mesh mesh = headMC.sharedMesh;
-        Bounds bounds = mesh.bounds;
-        Vector3 extents = bounds.extents;
-        frontVertexMesh = head.transform.TransformPoint(bounds.center + new Vector3(1 * extents.x, 0, 0));
-        backVertexMesh = head.transform.TransformPoint(bounds.center + new Vector3(-1 * extents.x, 0, 0));
-    }
+    //void GettingTipsOfMesh()
+    //{
+    //    Mesh mesh = headMC.sharedMesh;
+    //    Bounds bounds = mesh.bounds;
+    //    Vector3 extents = bounds.extents;
+    //    frontVertexMesh = head.transform.TransformPoint(bounds.center + new Vector3(1 * extents.x, 0, 0));
+    //    backVertexMesh = head.transform.TransformPoint(bounds.center + new Vector3(-1 * extents.x, 0, 0));
+    //}
 
-    void HittingTerrain()
-    {
-        GettingTipsOfMesh();
-        Vector3 hitVector = head.transform.TransformDirection(Vector3.down);
+    //void HittingTerrain()
+    //{
+    //    GettingTipsOfMesh();
+    //    Vector3 hitVector = head.transform.TransformDirection(Vector3.down);
 
-        RaycastHit hit;
-        if (Physics.Raycast(frontVertexMesh, hitVector, out hit))
-        {
-            Debug.DrawRay(frontVertexMesh, hitVector * hit.distance, Color.yellow);
-            //Debug.Log("Did Hit");
-        }
-        else
-        {
-            Debug.DrawRay(frontVertexMesh, hitVector * 1000, Color.white);
-            //Debug.Log("Did not Hit");
-        }
+    //    RaycastHit hit;
+    //    if (Physics.Raycast(frontVertexMesh, hitVector, out hit))
+    //    {
+    //        Debug.DrawRay(frontVertexMesh, hitVector * hit.distance, Color.yellow);
+    //        //Debug.Log("Did Hit");
+    //    }
+    //    else
+    //    {
+    //        Debug.DrawRay(frontVertexMesh, hitVector * 1000, Color.white);
+    //        //Debug.Log("Did not Hit");
+    //    }
 
-        RaycastHit hit1;
-        if (Physics.Raycast(backVertexMesh, hitVector, out hit1))
-        {
-            Debug.DrawRay(backVertexMesh, hitVector * hit1.distance, Color.yellow);
-            //Debug.Log("Did Hit");
-        }
-        else
-        {
-            Debug.DrawRay(backVertexMesh, hitVector * 1000, Color.white);
-            //Debug.Log("Did not Hit");
-        }
-    }
+    //    RaycastHit hit1;
+    //    if (Physics.Raycast(backVertexMesh, hitVector, out hit1))
+    //    {
+    //        Debug.DrawRay(backVertexMesh, hitVector * hit1.distance, Color.yellow);
+    //        //Debug.Log("Did Hit");
+    //    }
+    //    else
+    //    {
+    //        Debug.DrawRay(backVertexMesh, hitVector * 1000, Color.white);
+    //        //Debug.Log("Did not Hit");
+    //    }
+    //}
 
-    void OnDrawGizmos()
-    {
-        Gizmos.color = Color.magenta;
-        Gizmos.DrawSphere(frontVertexMesh, 1);
-        Gizmos.DrawSphere(backVertexMesh, 1);
-    }
+    //void OnDrawGizmos()
+    //{
+    //    Gizmos.color = Color.magenta;
+    //    Gizmos.DrawSphere(frontVertexMesh, 1);
+    //    Gizmos.DrawSphere(backVertexMesh, 1);
+    //}
 }
