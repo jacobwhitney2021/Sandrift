@@ -24618,6 +24618,7 @@ MonoBehaviour:
   maxMagnitude: 9
   sailForce: {x: 0, y: 0, z: 0}
   sailTorque: {x: 0, y: 0, z: 0}
+  firstObjectiveDone: 0
 --- !u!1 &1400851044884135934
 GameObject:
   m_ObjectHideFlags: 0
@@ -39160,6 +39161,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9c6899d0ce15014aafc58830a079705, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  worm: {fileID: 0}
+  spawn1: {x: 50, y: 60, z: 250}
+  spawn2: {x: 350, y: 60, z: 450}
+  spawn3: {x: 650, y: 60, z: 650}
 --- !u!114 &5905968425505685455
 MonoBehaviour:
   m_ObjectHideFlags: 0
