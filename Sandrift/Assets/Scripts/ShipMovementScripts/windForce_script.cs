@@ -37,6 +37,17 @@ public class windForce_script : MonoBehaviour
 
     private Vector3 goalWindVector;
     private float goalMagnitude;
+
+    public const int firstObjectiveAngle = 270;
+    public const int secondObjectiveAngle = 60;
+
+    private int activeAngle;
+    public bool firstObjectiveDone;
+
+    public void objectiveComplete() {
+        firstObjectiveDone = true;
+        activeAngle = secondObjectiveAngle;
+    }
     
     
 
@@ -55,13 +66,14 @@ public class windForce_script : MonoBehaviour
         craft_transform = transform.parent.parent;
         craft_gameobject = craft_transform.gameObject;
 
-        windVector.x = nonUniformRange(-1 * maxWind, maxWind);
-        windVector.y = 0;//nonUniformRange(-1 * maxWind, maxWind);
-        windVector.z = nonUniformRangePositiveBiased(maxWind);
-        magnitude = nonUniformRange(minMagnitude, maxMagnitude);
         
-        windState = 0;
+        
+        windState = windStateMax * perSecond;
+        firstObjectiveDone = false;
+        activeAngle = firstObjectiveAngle;
 
+        Vector3 vec = createVector();
+        windVector = vec;
 
     }
 
@@ -91,13 +103,28 @@ public class windForce_script : MonoBehaviour
         }
     }
 
+    Vector3 createVector() {
+        Vector3 vec;
+        if (firstObjectiveDone ) {
+            vec.x = nonUniformRange(0, maxWind);
+            vec.y = 0;//nonUniformRange(-1 * maxWind, maxWind);
+            vec.z = nonUniformRange(-1 * maxWind / 2, maxWind);
+        } else {
+            vec.z = nonUniformRange(-1 * maxWind, maxWind);
+            vec.y = 0;//nonUniformRange(-1 * maxWind, maxWind);
+            vec.x = nonUniformRange(-1 * maxWind, 0);
+            if (Mathf.Abs(vec.z) > Mathf.Abs(vec.x) ) vec.x = -1 * Mathf.Abs(vec.z);
+
+        }
+
+
+        return vec;
+    }
     void createWindGoal()
     {
-        Vector3 vec;
         
-        vec.x = nonUniformRange(-1 * maxWind, maxWind);
-        vec.y = 0;//nonUniformRange(-1 * maxWind, maxWind);
-        vec.z = nonUniformRangePositiveBiased(maxWind);
+        Vector3 vec = createVector();
+        Debug.Log("x = " + vec.x + "   z = " + vec.z);
         float mag = nonUniformRange(minMagnitude, maxMagnitude);
 
         windState = -1 * windChangeDur * perSecond;
@@ -137,7 +164,9 @@ float nonUniformRange(float from, float to)
             if (r != 0) {
                 return rand;
             }
-        } 
+        } else {
+            return rand;
+        }
         return nonUniformRange(from, to);
     }
 

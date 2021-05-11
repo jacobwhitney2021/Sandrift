@@ -10,6 +10,8 @@ public class rocketUnlock : MonoBehaviour
         if (other.gameObject.tag == "objective1")
         {
         	gameObject.GetComponent<rocketForce_script>().enabled = true;
+            GameObject.Find("sailChild").GetComponent<windForce_script>().objectiveComplete();
+
         }
     }
 }
