@@ -66,7 +66,7 @@ public class windForce_script : MonoBehaviour
         craft_transform = transform.parent.parent;
         craft_gameobject = craft_transform.gameObject;
 
-        
+        magnitude = nonUniformRange(minMagnitude, maxMagnitude);
         
         windState = windStateMax * perSecond;
         firstObjectiveDone = false;
