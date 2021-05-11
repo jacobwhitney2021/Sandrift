@@ -7,6 +7,9 @@ public class Lighthouse : MonoBehaviour
 {
     void OnTriggerEnter(Collider other)
     {
-        SceneManager.LoadScene("EndMenu");
+        if (other.name == "Player") {
+            SceneManager.LoadScene("EndMenu");
+        }
+        
     }
 }

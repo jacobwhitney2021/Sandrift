@@ -23,6 +23,9 @@ public class playerController_script : MonoBehaviour
 
     void Start()
     {
+
+        Debug.Log("jerer");
+        Debug.Log(GetComponent<Collider>().name);
     }
 
 

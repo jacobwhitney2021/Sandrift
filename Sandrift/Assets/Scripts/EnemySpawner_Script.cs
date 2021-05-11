@@ -11,6 +11,8 @@ public class EnemySpawner_Script : MonoBehaviour
 
     public GameObject enemy3;
 
+    public float height;
+
     public const int enemyCount = 1;
     public const float averageDistance = 80f;
     public const float startingHeight = 50f;
@@ -23,7 +25,6 @@ public class EnemySpawner_Script : MonoBehaviour
     Vector3 forward;
     void Start()
     {
-
         enemies = new GameObject[enemyCount];
         enemies[0] = enemy1;
         //enemies[1] = enemy2;
@@ -48,7 +49,7 @@ public class EnemySpawner_Script : MonoBehaviour
 
     public void createLine(float distFromPlayer, Vector3 position)
     {
-        Vector3 extra = new Vector3(-1 * drawDistanceWidth, 0 , distFromPlayer);
+        Vector3 extra = new Vector3(-1 * drawDistanceWidth, height , distFromPlayer);
         while (drawDistanceWidth > extra.x) {
             float actualX = Random.Range(averageDistance / -2 , averageDistance / 2);
             float actualZ = Random.Range(averageDistance / -2 , averageDistance / 2);
