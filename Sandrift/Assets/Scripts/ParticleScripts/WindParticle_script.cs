@@ -25,6 +25,6 @@ public class WindParticle_script : MonoBehaviour
         windAngle = Vector3.Angle(Vector3.forward, windVector);
 
         transform.rotation = Quaternion.Euler(new Vector3(0f, -windAngle, 0f));
-        transform.position = craft_transform.position - (windVector.normalized*distance_lag) + new Vector3(0f,10f,0);
+        transform.position = craft_transform.position - (windVector.normalized*distance_lag);
      }
 }

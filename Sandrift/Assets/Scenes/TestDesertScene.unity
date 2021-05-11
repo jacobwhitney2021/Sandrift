@@ -4258,7 +4258,7 @@ PrefabInstance:
     - target: {fileID: 5905968425505685452, guid: a96f5df4fadecb0499566e3875c5360f,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 141.07011
+      value: 139.6285
       objectReference: {fileID: 0}
     - target: {fileID: 5905968425505685452, guid: a96f5df4fadecb0499566e3875c5360f,
         type: 3}
@@ -4268,17 +4268,17 @@ PrefabInstance:
     - target: {fileID: 5905968425505685452, guid: a96f5df4fadecb0499566e3875c5360f,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 91.93969
+      value: 91.64258
       objectReference: {fileID: 0}
     - target: {fileID: 5905968425505685452, guid: a96f5df4fadecb0499566e3875c5360f,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5905968425505685452, guid: a96f5df4fadecb0499566e3875c5360f,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.7071068
+      value: -0.42498142
       objectReference: {fileID: 0}
     - target: {fileID: 5905968425505685452, guid: a96f5df4fadecb0499566e3875c5360f,
         type: 3}
@@ -4288,7 +4288,7 @@ PrefabInstance:
     - target: {fileID: 5905968425505685452, guid: a96f5df4fadecb0499566e3875c5360f,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.7071068
+      value: -0.9052021
       objectReference: {fileID: 0}
     - target: {fileID: 5905968425505685452, guid: a96f5df4fadecb0499566e3875c5360f,
         type: 3}
@@ -4303,7 +4303,7 @@ PrefabInstance:
     - target: {fileID: 5905968425505685452, guid: a96f5df4fadecb0499566e3875c5360f,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 270
+      value: 410.299
       objectReference: {fileID: 0}
     - target: {fileID: 5905968425505685452, guid: a96f5df4fadecb0499566e3875c5360f,
         type: 3}
@@ -5951,6 +5951,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: WindParticles
+      objectReference: {fileID: 0}
+    - target: {fileID: 6320891249131254807, guid: e8cd96d1d71b8404c9d4b12584f0ef86,
+        type: 3}
+      propertyPath: distance_lag
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 6320891250188046243, guid: e8cd96d1d71b8404c9d4b12584f0ef86,
         type: 3}
